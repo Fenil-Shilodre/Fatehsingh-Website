@@ -13,11 +13,7 @@ export const Header: React.FC = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > 20) {
-        setIsScrolled(true);
-      } else {
-        setIsScrolled(false);
-      }
+      setIsScrolled(window.scrollY > 20);
     };
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
@@ -26,38 +22,38 @@ export const Header: React.FC = () => {
   return (
     <>
       <header
-        className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${
+        className={`fixed top-0 left-0 right-0 z-40 transition-colors duration-200 ${
           isScrolled
-            ? 'bg-charcoal-dark/95 backdrop-blur-md shadow-lg py-3 border-b border-gold/20'
-            : 'bg-gradient-to-b from-charcoal-deep/90 via-charcoal-dark/70 to-transparent py-5'
+            ? 'bg-charcoal-dark/95 backdrop-blur-md shadow-md py-3.5 border-b border-gold/20'
+            : 'bg-gradient-to-b from-charcoal-deep/90 via-charcoal-dark/60 to-transparent py-5'
         }`}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
-          {/* Left: Brand Identity */}
+          {/* Left: Refined Fatehsinh Brand Identity Lockup */}
           <a
             href="#home"
-            className="group flex flex-col focus:outline-none"
-            aria-label="Fatehsinh ji Chauhan"
+            className="flex flex-col focus:outline-none"
+            aria-label="Fatehsinh Chauhan"
           >
-            <span className="font-serif font-bold text-lg sm:text-xl tracking-wider text-ivory group-hover:text-gold transition-colors">
+            <span className="font-serif font-bold text-lg sm:text-xl tracking-wider text-ivory">
               FATEHSINH CHAUHAN
             </span>
-            <span className="text-[10px] sm:text-xs tracking-widest text-gold-light/80 uppercase font-sans">
+            <span className="text-[10px] sm:text-xs tracking-widest text-gold-light/70 uppercase font-sans">
               {t('brand_tagline')}
             </span>
           </a>
 
-          {/* Center/Right: Desktop Navigation */}
+          {/* Center/Right: Desktop Bounded Institutional Navigation */}
           <nav className="hidden lg:flex items-center space-x-1 xl:space-x-2">
             {navItems.map((item) => {
               if (item.isDisabled) {
                 return (
                   <span
                     key={item.id}
-                    className="relative px-3 py-1.5 text-xs xl:text-sm font-medium text-ivory/40 cursor-not-allowed select-none transition-none"
-                    title="Section under development for future phase"
+                    className="px-3 py-1.5 text-xs xl:text-sm font-medium text-ivory/40 cursor-not-allowed select-none pointer-events-none"
+                    aria-disabled="true"
                   >
-                    {item.defaultLabel}
+                    {t(item.labelKey as any, item.defaultLabel)}
                   </span>
                 );
               }
@@ -66,9 +62,12 @@ export const Header: React.FC = () => {
                 <a
                   key={item.id}
                   href={item.href}
-                  className="px-3 py-1.5 text-xs xl:text-sm font-semibold tracking-wide text-gold bg-gold/10 border border-gold/40 rounded-sm shadow-sm transition-all duration-150"
+                  className="px-3.5 py-1.5 text-xs xl:text-sm font-semibold tracking-wide text-gold bg-gold/10 border border-gold/40 rounded-sm shadow-sm"
                 >
-                  {t(item.labelKey as any, item.defaultLabel)}
+                  <span className="relative">
+                    {t(item.labelKey as any, item.defaultLabel)}
+                    <span className="absolute -bottom-1 left-0 right-0 h-0.5 bg-gold rounded-full" />
+                  </span>
                 </a>
               );
             })}
