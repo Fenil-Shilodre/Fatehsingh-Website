@@ -1,8 +1,10 @@
 "use client";
 
 import React from 'react';
+import Image from 'next/image';
 import { useLanguage } from '@/context/LanguageContext';
 import { SectionHeading } from '@/components/ui/SectionHeading';
+import { silwasaPlaces } from '@/data/silwasaPlaces';
 import { Shield, Sparkles, Heart } from 'lucide-react';
 
 export const Introduction: React.FC = () => {
@@ -83,6 +85,39 @@ export const Introduction: React.FC = () => {
             <p className="text-sm text-charcoal/70 leading-relaxed">
               {t('lineage_card_devkiba_desc')}
             </p>
+          </div>
+        </div>
+
+        {/* Silvassa Environmental Aerial Landscape Banner */}
+        <div className="my-12 relative rounded-xl overflow-hidden border border-sandstone shadow-md bg-charcoal-dark">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-0 items-center">
+            <div className="lg:col-span-7 relative h-64 sm:h-80 lg:h-96">
+              <Image
+                src={silwasaPlaces.aerial.src}
+                alt={silwasaPlaces.aerial.alt}
+                fill
+                loading="lazy"
+                className="object-cover object-center"
+                sizes="(max-width: 1024px) 100vw, 60vw"
+              />
+              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-transparent to-charcoal-dark/90 hidden lg:block" />
+              <div className="absolute inset-0 bg-gradient-to-t from-charcoal-dark via-transparent to-transparent lg:hidden" />
+            </div>
+            <div className="lg:col-span-5 p-8 lg:p-10 text-ivory space-y-4 bg-charcoal-dark">
+              <span className="text-xs font-semibold uppercase tracking-widest text-gold block">
+                Territorial Context
+              </span>
+              <h3 className="font-serif text-2xl font-bold text-ivory">
+                {silwasaPlaces.aerial.title}
+              </h3>
+              <p className="text-sm text-ivory/80 leading-relaxed font-sans">
+                Generational public stewardship rooted in the soil, green canopy, and civic waterways of Silvassa and Dadra & Nagar Haveli.
+              </p>
+              <div className="pt-2 text-xs text-gold-light/70 italic flex items-center gap-2">
+                <span className="w-1.5 h-1.5 rounded-full bg-gold inline-block" />
+                <span>{silwasaPlaces.aerial.location}</span>
+              </div>
+            </div>
           </div>
         </div>
 

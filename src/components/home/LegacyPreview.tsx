@@ -1,11 +1,13 @@
 "use client";
 
 import React, { useState, useEffect, useRef } from 'react';
+import Image from 'next/image';
 import { useLanguage } from '@/context/LanguageContext';
 import { SectionHeading } from '@/components/ui/SectionHeading';
 import { Button } from '@/components/ui/Button';
 import { useSmoothScroll } from '@/components/providers/SmoothScrollProvider';
-import { Lock, History } from 'lucide-react';
+import { silwasaPlaces } from '@/data/silwasaPlaces';
+import { Lock, History, Landmark } from 'lucide-react';
 
 export const LegacyPreview: React.FC = () => {
   const { t } = useLanguage();
@@ -23,13 +25,15 @@ export const LegacyPreview: React.FC = () => {
       era: "Ancestral Foundation",
       title: "Shri Virsinhji Chauhan & Late Shri Mohansinhji Chauhan",
       desc: "Deep-rooted agricultural stewardship and community welfare traditions in Silvassa.",
-      year: "Early 20th Century"
+      year: "Early 20th Century",
+      hasHeritageImage: true
     },
     {
       era: "Institutional Era",
       title: "Late Smt. Devkiba Mohansinhji Chauhan Tribute",
       desc: "Establishing the foundation for comprehensive educational institutions in Dadra & Nagar Haveli.",
-      year: "1980s Onwards"
+      year: "1980s Onwards",
+      hasHeritageImage: false
     }
   ];
 
@@ -128,7 +132,6 @@ export const LegacyPreview: React.FC = () => {
                 height: `${lineMeta.fillHeight}px`,
               }}
             >
-              {/* Head Orb is physically ATTACHED to the bottom tip of the fill line with ZERO GAP */}
               {lineMeta.fillHeight > 5 && lineMeta.fillHeight < lineMeta.height - 5 && (
                 <div className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 w-4 h-4 bg-gold rounded-full shadow-[0_0_16px_#C5A059,0_0_25px_#B8533C] ring-4 ring-terracotta/50 animate-pulse z-20" />
               )}
@@ -172,12 +175,38 @@ export const LegacyPreview: React.FC = () => {
                       {item.year}
                     </span>
                   </div>
-                  <h3 className="font-serif text-xl font-bold text-charcoal-dark mb-2">
-                    {item.title}
-                  </h3>
-                  <p className="text-sm text-charcoal/70 leading-relaxed font-sans">
-                    {item.desc}
-                  </p>
+                  
+                  <div className="grid grid-cols-1 md:grid-cols-12 gap-6 items-center">
+                    <div className={item.hasHeritageImage ? "md:col-span-8" : "md:col-span-12"}>
+                      <h3 className="font-serif text-xl font-bold text-charcoal-dark mb-2">
+                        {item.title}
+                      </h3>
+                      <p className="text-sm text-charcoal/70 leading-relaxed font-sans mb-3">
+                        {item.desc}
+                      </p>
+                      {item.hasHeritageImage && (
+                        <div className="inline-flex items-center gap-1.5 text-xs text-terracotta font-medium italic pt-1">
+                          <Landmark className="w-3.5 h-3.5" />
+                          <span>{silwasaPlaces.heritage.title} · {silwasaPlaces.heritage.location}</span>
+                        </div>
+                      )}
+                    </div>
+
+                    {item.hasHeritageImage && (
+                      <div className="md:col-span-4">
+                        <div className="relative w-full h-44 rounded-lg overflow-hidden border border-sandstone shadow-sm bg-sandstone/20">
+                          <Image
+                            src={silwasaPlaces.heritage.src}
+                            alt={silwasaPlaces.heritage.alt}
+                            fill
+                            loading="lazy"
+                            className="object-cover group-hover:scale-105 transition-transform duration-700"
+                            sizes="(max-width: 768px) 100vw, 250px"
+                          />
+                        </div>
+                      </div>
+                    )}
+                  </div>
                 </div>
               </div>
             );

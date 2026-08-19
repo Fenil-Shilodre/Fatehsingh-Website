@@ -1,9 +1,11 @@
 "use client";
 
 import React from 'react';
+import Image from 'next/image';
 import { useLanguage } from '@/context/LanguageContext';
 import { SectionHeading } from '@/components/ui/SectionHeading';
 import { siteConfig } from '@/data/site';
+import { silwasaPlaces } from '@/data/silwasaPlaces';
 import { Building2, Film, Home, UtensilsCrossed, ExternalLink } from 'lucide-react';
 
 export const HaveliGroupPreview: React.FC = () => {
@@ -41,8 +43,21 @@ export const HaveliGroupPreview: React.FC = () => {
   ];
 
   return (
-    <section id="haveli-group" className="py-20 bg-charcoal-deep text-ivory relative">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="haveli-group" className="py-20 bg-charcoal-deep text-ivory relative overflow-hidden">
+      {/* Silvassa Waterway Environmental Backdrop Layer */}
+      <div className="absolute inset-0 pointer-events-none z-0">
+        <Image
+          src={silwasaPlaces.boatingJetty.src}
+          alt={silwasaPlaces.boatingJetty.alt}
+          fill
+          loading="lazy"
+          className="object-cover object-center opacity-15"
+          sizes="100vw"
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-charcoal-deep via-charcoal-deep/90 to-charcoal-deep" />
+      </div>
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <SectionHeading
           light
           eyebrow={t('haveli_eyebrow')}
@@ -55,7 +70,7 @@ export const HaveliGroupPreview: React.FC = () => {
           {verticals.map((v, idx) => (
             <div
               key={idx}
-              className="bg-charcoal p-6 rounded-lg border border-gold/20 hover:border-gold/50 transition-colors flex flex-col justify-between"
+              className="bg-charcoal/90 backdrop-blur-md p-6 rounded-lg border border-gold/20 hover:border-gold/50 transition-colors flex flex-col justify-between"
             >
               <div>
                 <div className="w-12 h-12 rounded-full bg-gold/10 border border-gold/30 flex items-center justify-center mb-4">
@@ -73,7 +88,7 @@ export const HaveliGroupPreview: React.FC = () => {
         </div>
 
         {/* External Link CTA Bar */}
-        <div className="bg-charcoal-dark p-6 sm:p-8 rounded-xl border border-gold/30 flex flex-col sm:flex-row items-center justify-between gap-6">
+        <div className="bg-charcoal-dark/95 backdrop-blur-md p-6 sm:p-8 rounded-xl border border-gold/30 flex flex-col sm:flex-row items-center justify-between gap-6">
           <div className="text-center sm:text-left">
             <p className="text-sm text-ivory/80 font-sans">
               {t('haveli_cta_text')}
