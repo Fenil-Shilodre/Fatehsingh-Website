@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect, useRef } from 'react';
 import { useLanguage } from '@/context/LanguageContext';
+import { motion } from 'framer-motion';
 
 interface StatItem {
   target: number;
@@ -25,7 +26,6 @@ const AnimatedCounter: React.FC<{
   useEffect(() => {
     if (!isVisible) return;
 
-    // Check for reduced motion preference
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (prefersReducedMotion) {
       setCount(target);
@@ -40,7 +40,6 @@ const AnimatedCounter: React.FC<{
       const elapsed = currentTime - startTime;
       const progress = Math.min(elapsed / duration, 1);
 
-      // Ease out cubic
       const easeProgress = 1 - Math.pow(1 - progress, 3);
       const currentCount = Math.floor(start + easeProgress * (target - start));
 
@@ -100,18 +99,38 @@ export const ImpactStats: React.FC = () => {
   ];
 
   return (
-    <section ref={sectionRef} className="py-16 bg-forest text-ivory border-y border-gold/30">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section ref={sectionRef} className="py-16 bg-forest text-ivory border-y border-gold/30 relative overflow-hidden">
+      {/* Background Subtle Pattern */}
+      <div className="absolute inset-0 bg-radial-gradient from-gold/5 via-transparent to-transparent pointer-events-none" />
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="text-center mb-8">
-          <span className="text-xs uppercase tracking-widest text-gold-light font-semibold px-3 py-1 rounded bg-gold/10 border border-gold/20">
+          <motion.span 
+            initial={{ opacity: 0, scale: 0.9 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            className="text-xs uppercase tracking-widest text-gold-light font-semibold px-3 py-1 rounded bg-gold/10 border border-gold/20 backdrop-blur-md"
+          >
             {t('stat_tag')}
-          </span>
+          </motion.span>
         </div>
 
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 divide-y lg:divide-y-0 lg:divide-x divide-gold/20">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
           {stats.map((stat, idx) => (
-            <div key={idx} className={`text-center ${idx > 0 ? 'pt-6 lg:pt-0' : ''}`}>
-              <div className="font-serif text-4xl sm:text-5xl lg:text-6xl font-bold text-gold mb-2 tracking-tight min-h-[3.5rem] flex items-center justify-center">
+            <motion.div
+              key={idx}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: idx * 0.1 }}
+              whileHover={{ 
+                y: -6, 
+                backgroundColor: "rgba(212, 175, 55, 0.08)",
+                borderColor: "rgba(212, 175, 55, 0.4)",
+              }}
+              className="text-center p-6 rounded-lg border border-gold/15 bg-charcoal-dark/40 backdrop-blur-sm transition-all duration-300 shadow-md group cursor-default"
+            >
+              <div className="font-serif text-4xl sm:text-5xl lg:text-6xl font-bold text-gold mb-2 tracking-tight min-h-[3.5rem] flex items-center justify-center group-hover:scale-105 transition-transform duration-300">
                 <AnimatedCounter
                   target={stat.target}
                   start={stat.start}
@@ -120,10 +139,10 @@ export const ImpactStats: React.FC = () => {
                   isVisible={isVisible}
                 />
               </div>
-              <div className="text-xs sm:text-sm font-medium text-ivory/80 uppercase tracking-wider font-sans">
+              <div className="text-xs sm:text-sm font-medium text-ivory/80 uppercase tracking-wider font-sans group-hover:text-gold-light transition-colors">
                 {t(stat.labelKey as any, stat.defaultLabel)}
               </div>
-            </div>
+            </motion.div>
           ))}
         </div>
       </div>

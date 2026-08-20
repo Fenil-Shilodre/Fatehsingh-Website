@@ -9,11 +9,11 @@ export interface SilwasaPlaceImage {
 
 export const silwasaPlaces = {
   hero: {
-    id: "vanganga-landscape",
-    src: "/images/silwasa-places/image copy.png",
-    alt: "Vanganga Lake Garden and arch bridge reflecting in calm waters under blue sky in Silvassa",
-    title: "Vanganga Lake & Gardens",
-    location: "Silvassa, Dadra & Nagar Haveli",
+    id: "silvassa-vibe-hero",
+    src: "/images/silvassa-vibe-bg.jpg",
+    alt: "Cinematic illustration of Silvassa landscape featuring Daman Ganga river, lush forest hills, golden sunset sky, and Warli tribal heritage motifs",
+    title: "Silvassa Territorial Vibe & Forest Heritage",
+    location: "Capital Territory, Dadra & Nagar Haveli",
     category: "hero" as const
   },
   aerial: {
