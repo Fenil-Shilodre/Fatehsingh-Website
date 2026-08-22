@@ -10,7 +10,7 @@ export const ArchivePreview: React.FC = () => {
   const { t } = useLanguage();
 
   return (
-    <section id="gallery" className="py-20 bg-ivory text-charcoal relative">
+    <section id="moments" className="py-20 bg-ivory text-charcoal relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <SectionHeading
           eyebrow={t('moments_eyebrow')}

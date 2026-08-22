@@ -13,8 +13,8 @@ export const Introduction: React.FC = () => {
   return (
     <section id="lineage" className="py-20 bg-ivory text-charcoal relative overflow-hidden">
       {/* Subtle Background Watermark */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 font-serif text-[18vw] font-bold text-sandstone/30 select-none pointer-events-none tracking-widest uppercase">
-        CHAUHAN
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 font-serif text-[12vw] md:text-[13.5vw] lg:text-[14.5vw] font-bold text-sandstone/35 select-none pointer-events-none tracking-wide uppercase whitespace-nowrap">
+        FATEHSINGH
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -32,7 +32,7 @@ export const Introduction: React.FC = () => {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
           {/* 1. Grandfather */}
           <div className="bg-white p-8 rounded-lg border border-sandstone shadow-sm hover:shadow-md transition-shadow relative">
-            <div className="w-10 h-10 rounded-full bg-forest/10 text-forest flex items-center justify-center mb-6">
+            <div className="w-10 h-10 rounded-full bg-gold/15 text-gold-dark flex items-center justify-center mb-6 border border-gold/30">
               <Shield className="w-5 h-5" />
             </div>
             <span className="text-xs font-semibold uppercase tracking-wider text-terracotta block mb-2">
@@ -119,18 +119,6 @@ export const Introduction: React.FC = () => {
               </div>
             </div>
           </div>
-        </div>
-
-        {/* Connecting Line Summary */}
-        <div className="max-w-xl mx-auto text-center p-6 bg-sandstone/30 rounded-lg border border-sandstone">
-          <div className="flex items-center justify-center gap-3 mb-2">
-            <span className="w-2 h-2 rounded-full bg-gold" />
-            <span className="w-2 h-2 rounded-full bg-terracotta" />
-            <span className="w-2 h-2 rounded-full bg-forest" />
-          </div>
-          <p className="font-serif font-semibold text-charcoal-dark text-base">
-            {t('lineage_line_caption')}
-          </p>
         </div>
       </div>
     </section>

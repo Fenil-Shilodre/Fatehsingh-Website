@@ -103,7 +103,7 @@ export const LegacyPreview: React.FC = () => {
   }, [lenis]);
 
   return (
-    <section id="legacy-preview" className="py-20 bg-ivory text-charcoal relative overflow-hidden">
+    <section id="lineage" className="py-20 bg-ivory text-charcoal relative overflow-hidden">
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
         <SectionHeading
           eyebrow="Family Legacy"

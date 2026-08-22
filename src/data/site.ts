@@ -9,13 +9,13 @@ export interface NavItem {
 
 export const navItems: NavItem[] = [
   { id: "home", labelKey: "nav_home", defaultLabel: "Home", href: "#home", isActive: true, isDisabled: false },
-  { id: "lineage", labelKey: "nav_lineage", defaultLabel: "Lineage", href: "#lineage", isActive: false, isDisabled: true },
-  { id: "service", labelKey: "nav_service", defaultLabel: "Service", href: "#service", isActive: false, isDisabled: true },
-  { id: "institutions", labelKey: "nav_institutions", defaultLabel: "Institutions", href: "#institutions", isActive: false, isDisabled: true },
-  { id: "haveli", labelKey: "nav_haveli", defaultLabel: "Haveli", href: "#haveli-group", isActive: false, isDisabled: true },
-  { id: "moments", labelKey: "nav_moments", defaultLabel: "Moments", href: "#archive-preview", isActive: false, isDisabled: true },
-  { id: "philosophy", labelKey: "nav_philosophy", defaultLabel: "Philosophy", href: "#philosophy", isActive: false, isDisabled: true },
-  { id: "contact", labelKey: "nav_contact", defaultLabel: "Contact", href: "#contact", isActive: false, isDisabled: true }
+  { id: "lineage", labelKey: "nav_lineage", defaultLabel: "Lineage", href: "#lineage", isActive: false, isDisabled: false },
+  { id: "service", labelKey: "nav_service", defaultLabel: "Service", href: "#service", isActive: false, isDisabled: false },
+  { id: "institutions", labelKey: "nav_institutions", defaultLabel: "Institutions", href: "#institutions", isActive: false, isDisabled: false },
+  { id: "haveli", labelKey: "nav_haveli", defaultLabel: "Haveli", href: "#haveli-group", isActive: false, isDisabled: false },
+  { id: "moments", labelKey: "nav_moments", defaultLabel: "Moments", href: "#moments", isActive: false, isDisabled: false },
+  { id: "philosophy", labelKey: "nav_philosophy", defaultLabel: "Philosophy", href: "#philosophy", isActive: false, isDisabled: false },
+  { id: "contact", labelKey: "nav_contact", defaultLabel: "Contact", href: "#contact", isActive: false, isDisabled: false }
 ];
 
 export const siteConfig = {

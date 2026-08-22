@@ -4,7 +4,7 @@ import React from 'react';
 import { useLanguage } from '@/context/LanguageContext';
 import { navItems, siteConfig } from '@/data/site';
 import { Language } from '@/data/translations';
-import { Globe, MapPin, Phone, Mail, Building, Landmark, ExternalLink } from 'lucide-react';
+import { Globe, MapPin, Phone, Mail, Building, Landmark } from 'lucide-react';
 
 export const Footer: React.FC = () => {
   const { language, setLanguage, t } = useLanguage();
@@ -14,7 +14,7 @@ export const Footer: React.FC = () => {
   };
 
   return (
-    <footer className="bg-charcoal-deep text-ivory border-t border-gold/20 pt-16 pb-12 relative overflow-hidden">
+    <footer id="contact" className="bg-charcoal-deep text-ivory border-t border-gold/20 pt-16 pb-12 relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* 4-Column Structured Institutional Archive Grid */}
@@ -54,15 +54,6 @@ export const Footer: React.FC = () => {
               >
                 FB
               </a>
-              <a
-                href={siteConfig.socials.externalPortal}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-9 h-9 rounded-full bg-charcoal-light/80 hover:bg-gold hover:text-charcoal-dark text-ivory/80 flex items-center justify-center transition-colors border border-ivory/10 text-xs font-bold"
-                aria-label="Haveli Group Portal"
-              >
-                HG
-              </a>
             </div>
           </div>
 
@@ -71,25 +62,16 @@ export const Footer: React.FC = () => {
             <h4 className="font-serif text-base font-semibold text-gold tracking-wide border-b border-gold/20 pb-2">
               {t('footer_quick_links')}
             </h4>
-            <ul className="space-y-2 text-sm font-sans">
-              {navItems.map((item) => (
-                <li key={item.id}>
-                  {item.isDisabled ? (
-                    <span className="text-ivory/40 cursor-not-allowed select-none text-xs flex items-center justify-between">
-                      <span>{t(item.labelKey as any, item.defaultLabel)}</span>
-                      <span className="text-[10px] text-ivory/30 uppercase">Disabled</span>
+            <ul className="space-y-2 text-xs sm:text-sm font-sans text-ivory/75">
+              {navItems
+                .filter((item) => item.id !== 'haveli')
+                .map((item) => (
+                  <li key={item.id}>
+                    <span className="select-none cursor-default block">
+                      {t(item.labelKey as any, item.defaultLabel)}
                     </span>
-                  ) : (
-                    <a
-                      href={item.href}
-                      className="text-gold font-semibold hover:underline flex items-center gap-1.5"
-                    >
-                      <span className="w-1.5 h-1.5 rounded-full bg-gold inline-block" />
-                      <span>{t(item.labelKey as any, item.defaultLabel)}</span>
-                    </a>
-                  )}
-                </li>
-              ))}
+                  </li>
+                ))}
             </ul>
           </div>
 
@@ -111,17 +93,6 @@ export const Footer: React.FC = () => {
               <li className="space-y-0.5">
                 <span className="font-semibold text-ivory block">Haveli Institute of Legal Studies & Research</span>
                 <span className="text-ivory/50 block">Est. 2017 · Bar Council of India Recognized</span>
-              </li>
-              <li className="pt-1">
-                <a
-                  href={siteConfig.socials.externalPortal}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-gold-light hover:text-gold inline-flex items-center gap-1 underline decoration-gold/40"
-                >
-                  <span>Haveli Group Official (haveligroup.biz)</span>
-                  <ExternalLink className="w-3 h-3" />
-                </a>
               </li>
             </ul>
           </div>

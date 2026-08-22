@@ -10,35 +10,44 @@ const config: Config = {
     extend: {
       colors: {
         ivory: {
-          DEFAULT: "#FAF8F5",
-          warm: "#F5F0E6",
-          dark: "#EFE8DA",
+          DEFAULT: "#F8FAFC",
+          warm: "#F1F5F9",
+          dark: "#E2E8F0",
+          ice: "#EFF6FF",
         },
         charcoal: {
-          light: "#2C343E",
-          DEFAULT: "#1E242B",
-          dark: "#12161A",
-          deep: "#0B0E11",
+          light: "#1E2E52",
+          DEFAULT: "#0F1D3D",
+          dark: "#0A1329",
+          deep: "#060B18",
+        },
+        royal: {
+          50: "#EFF6FF",
+          100: "#DBEAFE",
+          200: "#BFDBFE",
+          300: "#93C5FD",
+          400: "#60A5FA",
+          500: "#3B82F6",
+          600: "#2563EB",
+          700: "#1D4ED8",
+          800: "#1E40AF",
+          900: "#1E3A8A",
+          950: "#0F1E4A",
         },
         terracotta: {
-          light: "#D46D55",
-          DEFAULT: "#B8533C",
-          dark: "#8F3A26",
+          light: "#DC2626",
+          DEFAULT: "#991B1B", // Deep Regal Crimson
+          dark: "#7F1D1D",
         },
         gold: {
-          light: "#DFC38A",
-          DEFAULT: "#C5A059",
-          dark: "#A37E39",
-          muted: "#8F7236",
-        },
-        forest: {
-          light: "#2E5C45",
-          DEFAULT: "#1B3B2B",
-          dark: "#122A1E",
+          light: "#F3DF95",   // Radiant Champagne Gold
+          DEFAULT: "#D4AF37", // Imperial Gold
+          dark: "#A38025",   // Burnished Gold
+          muted: "#80631B",
         },
         sandstone: {
-          DEFAULT: "#E6DFC8",
-          dark: "#D6CCA8",
+          DEFAULT: "#E2E8F0", // Clean Platinum Slate Border
+          dark: "#CBD5E1",
         }
       },
       fontFamily: {

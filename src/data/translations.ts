@@ -253,8 +253,8 @@ export const translations: Record<Language, Record<TranslationKey, string>> = {
     footer_bio_snippet: "Dedicated to the socio-economic advancement, educational empowerment, and civic dignity of Dadra & Nagar Haveli for over 45 years.",
     footer_quick_links: "Navigation",
     footer_trust_links: "Trust Institutions",
-    footer_rights: "© 2026. All rights reserved. Official Personal Archive of Shri Fatehsinh Mohansinh Chauhan.",
-    footer_designed: "Dignified Statesman Archive · Silvassa, Dadra & Nagar Haveli"
+    footer_rights: "© 2026. All Rights Reserved by devphant.",
+    footer_designed: "A Life of Dedicated Public Service · Silvassa, Dadra & Nagar Haveli"
   },
 
   hi: {
@@ -388,8 +388,8 @@ export const translations: Record<Language, Record<TranslationKey, string>> = {
     footer_bio_snippet: "45 से अधिक वर्षों से दादरा एवं नगर हवेली के सामाजिक, शैक्षणिक और बुनियादी उत्थान हेतु समर्पित।",
     footer_quick_links: "नेविगेशन",
     footer_trust_links: "ट्रस्ट संस्थान",
-    footer_rights: "© 2026. सर्वाधिकार सुरक्षित। श्री फतेहसिंह मोहनसिंह चौहान का आधिकारिक डिजिटल अभिलेखागार।",
-    footer_designed: "गरिमामय नेतृत्व अभिलेखागार · सिलवासा, दादरा एवं नगर हवेली"
+    footer_rights: "© 2026. All Rights Reserved by devphant.",
+    footer_designed: "समर्पित जनसेवा एवं नेतृत्व · सिलवासा, दादरा एवं नगर हवेली"
   },
 
   gu: {
@@ -523,7 +523,7 @@ export const translations: Record<Language, Record<TranslationKey, string>> = {
     footer_bio_snippet: "45 થી વધુ વર્ષોથી દાદરા અને નગર હવેલીના સામાજિક, શૈક્ષણિક અને સર્વાંગી ઉત્કર્ષ માટે સમર્પિત.",
     footer_quick_links: "નેવિગેશન",
     footer_trust_links: "ટ્રસ્ટ સંસ્થાઓ",
-    footer_rights: "© 2026. સર્વાધિકાર સુરક્ષિત. શ્રી ફતેહસિંહ મોહનસિંહ ચૌહાણનું સત્તાવાર ડિજિટલ આર્કાઇવ.",
-    footer_designed: "ગરિમાપૂર્ણ લોકસેવા આર્કાઇવ · સેલવાસ, દાદરા અને નગર હવેલી"
+    footer_rights: "© 2026. All Rights Reserved by devphant.",
+    footer_designed: "સમર્પિત લોકસેવા અને નેતૃત્વ · સેલવાસ, દાદરા અને નગર હવેલી"
   }
 };

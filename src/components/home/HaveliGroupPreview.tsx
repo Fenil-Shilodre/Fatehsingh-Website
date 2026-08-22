@@ -4,9 +4,8 @@ import React from 'react';
 import Image from 'next/image';
 import { useLanguage } from '@/context/LanguageContext';
 import { SectionHeading } from '@/components/ui/SectionHeading';
-import { siteConfig } from '@/data/site';
 import { silwasaPlaces } from '@/data/silwasaPlaces';
-import { Building2, Film, Home, UtensilsCrossed, ExternalLink } from 'lucide-react';
+import { Building2, Film, Home, UtensilsCrossed } from 'lucide-react';
 
 export const HaveliGroupPreview: React.FC = () => {
   const { t } = useLanguage();
@@ -66,7 +65,7 @@ export const HaveliGroupPreview: React.FC = () => {
         />
 
         {/* 4 Verticals Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {verticals.map((v, idx) => (
             <div
               key={idx}
@@ -85,24 +84,6 @@ export const HaveliGroupPreview: React.FC = () => {
               </div>
             </div>
           ))}
-        </div>
-
-        {/* External Link CTA Bar */}
-        <div className="bg-charcoal-dark/95 backdrop-blur-md p-6 sm:p-8 rounded-xl border border-gold/30 flex flex-col sm:flex-row items-center justify-between gap-6">
-          <div className="text-center sm:text-left">
-            <p className="text-sm text-ivory/80 font-sans">
-              {t('haveli_cta_text')}
-            </p>
-          </div>
-          <a
-            href={siteConfig.socials.externalPortal}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-6 py-3 rounded bg-gold hover:bg-gold-light text-charcoal-dark font-semibold text-sm transition-colors shrink-0"
-          >
-            <span>{t('haveli_btn_text')}</span>
-            <ExternalLink className="w-4 h-4" />
-          </a>
         </div>
       </div>
     </section>

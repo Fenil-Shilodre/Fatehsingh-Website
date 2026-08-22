@@ -2,230 +2,98 @@
 
 import React from 'react';
 import Image from 'next/image';
-import { useLanguage } from '@/context/LanguageContext';
-import { silwasaPlaces } from '@/data/silwasaPlaces';
-import { ChevronDown, Compass, Sparkles, MapPin } from 'lucide-react';
+import { ChevronDown, Sparkles } from 'lucide-react';
 import { motion, Variants } from 'framer-motion';
 
 export const Hero: React.FC = () => {
-  const { t } = useLanguage();
-
-  // Animation variants
   const containerVariants: Variants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.15,
+        staggerChildren: 0.08,
         delayChildren: 0.1,
       },
     },
   };
 
   const itemVariants: Variants = {
-    hidden: { opacity: 0, y: 25 },
+    hidden: { opacity: 0, y: 15 },
     visible: {
       opacity: 1,
       y: 0,
-      transition: { duration: 0.7, ease: "easeOut" },
-    },
-  };
-
-  const portraitVariants: Variants = {
-    hidden: { opacity: 0, scale: 0.94, x: 20 },
-    visible: {
-      opacity: 1,
-      scale: 1,
-      x: 0,
-      transition: { duration: 0.9, ease: "easeOut", delay: 0.3 },
+      transition: { duration: 0.5, ease: "easeOut" },
     },
   };
 
   return (
-    <section id="home" className="relative min-h-[90vh] lg:min-h-screen flex items-center pt-24 pb-16 bg-charcoal-deep overflow-hidden text-ivory">
-      {/* Silvassa Landscape & Vibe Background Layer with Subtle Zoom Reveal */}
-      <div className="absolute inset-0 pointer-events-none z-0 overflow-hidden">
-        <motion.div
-          initial={{ scale: 1.15, opacity: 0 }}
-          animate={{ scale: 1.05, opacity: 1 }}
-          transition={{ duration: 1.8, ease: "easeOut" }}
-          className="relative w-full h-full"
-        >
-          <Image
-            src={silwasaPlaces.hero.src}
-            alt={silwasaPlaces.hero.alt}
-            fill
-            priority
-            className="object-cover object-center lg:object-right opacity-70"
-            sizes="100vw"
-          />
-        </motion.div>
+    <section id="home" className="relative min-h-[90vh] lg:min-h-screen flex flex-col justify-end items-center pt-28 pb-16 sm:pb-24 bg-[#080D1A] overflow-hidden text-ivory text-center">
+      {/* 1. Full-Bleed Background Image (High Visibility & Brightness) */}
+      <div className="absolute inset-0 z-0">
+        <Image
+          src="/images/hero-speech.jpg"
+          alt="Shri Fatehsinh Mohansinh Chauhan"
+          fill
+          priority
+          className="object-cover object-[center_18%] md:object-[center_12%] filter brightness-100 contrast-100"
+          sizes="100vw"
+        />
 
-        {/* Gradient Overlays for contrast and legibility */}
-        <div className="absolute inset-0 bg-gradient-to-r from-charcoal-deep via-charcoal-deep/90 via-55% to-transparent lg:to-charcoal-deep/20" />
-        <div className="absolute inset-0 bg-gradient-to-t from-charcoal-deep via-transparent to-charcoal-deep/50" />
+        {/* Soft, Non-intrusive Lower Gradient for Text Readability */}
+        <div className="absolute inset-0 bg-gradient-to-t from-[#060A14] via-[#060A14]/70 via-35% to-transparent" />
+        <div className="absolute top-0 inset-x-0 h-28 bg-gradient-to-b from-[#060A14]/60 to-transparent" />
       </div>
 
-      {/* Animated Light Glow Halo */}
-      <motion.div
-        animate={{
-          scale: [1, 1.2, 1],
-          opacity: [0.15, 0.3, 0.15],
-        }}
-        transition={{
-          duration: 6,
-          repeat: Infinity,
-          ease: "easeInOut",
-        }}
-        className="absolute top-1/4 left-1/2 -translate-x-1/2 w-96 h-96 bg-gold/15 rounded-full blur-3xl pointer-events-none z-0"
-      />
-
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
+      {/* 2. Centered Content (Always Fully Visible & High Contrast) */}
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-30 w-full flex flex-col items-center">
         <motion.div
           variants={containerVariants}
           initial="hidden"
           animate="visible"
-          className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center"
+          className="flex flex-col items-center space-y-3 w-full"
         >
-          
-          {/* Left Column: Text Content */}
-          <div className="lg:col-span-7 space-y-6 text-left order-1">
-            
-            {/* Eyebrow Location Badge */}
-            <motion.div variants={itemVariants}>
-              <motion.div
-                whileHover={{ scale: 1.03, borderColor: "rgba(212, 175, 55, 0.7)" }}
-                transition={{ type: "spring", stiffness: 400, damping: 25 }}
-                className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-gold/40 bg-charcoal-dark/85 text-gold-light text-xs font-semibold uppercase tracking-widest backdrop-blur-md shadow-lg cursor-default"
-              >
-                <Compass className="w-3.5 h-3.5 text-gold animate-spin-slow" />
-                <span>{t('hero_eyebrow')}</span>
-                <span className="inline-block w-1.5 h-1.5 rounded-full bg-gold animate-pulse ml-1" />
-              </motion.div>
-            </motion.div>
+          {/* 2-Line Headline (Refined Small Font Sizing) */}
+          <motion.h1 
+            variants={itemVariants} 
+            className="font-serif text-xl sm:text-2xl md:text-3xl lg:text-[2.25rem] font-bold tracking-wider text-white uppercase leading-snug drop-shadow-[0_4px_14px_rgba(0,0,0,0.95)]"
+          >
+            <span>FATEHSINH’S VISION.</span>
+            <br />
+            <span className="text-white drop-shadow-[0_4px_14px_rgba(0,0,0,0.95)]">
+              DADRA & NAGAR HAVELI’S FUTURE.
+            </span>
+          </motion.h1>
 
-            {/* Main Name Heading */}
-            <motion.h1 
-              variants={itemVariants} 
-              className="font-serif text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight text-ivory leading-[1.1] drop-shadow-xl"
+          {/* Small Single-Line Subtitle */}
+          <motion.p 
+            variants={itemVariants}
+            className="font-sans text-[11px] sm:text-xs md:text-sm font-semibold tracking-[0.2em] text-gold-light uppercase drop-shadow-[0_2px_8px_rgba(0,0,0,0.95)]"
+          >
+            A LIFETIME OF DEDICATED PUBLIC SERVICE.
+          </motion.p>
+
+          {/* 2 CTA Buttons */}
+          <motion.div variants={itemVariants} className="pt-2 flex flex-col sm:flex-row items-center justify-center gap-3 w-full sm:w-auto">
+            <motion.a
+              href="#service"
+              whileHover={{ scale: 1.03, y: -2 }}
+              whileTap={{ scale: 0.97 }}
+              className="inline-flex items-center justify-center px-6 py-2.5 rounded-md bg-terracotta hover:bg-terracotta-dark text-white font-semibold text-xs sm:text-sm shadow-xl transition-all gap-1.5 group w-full sm:w-auto"
             >
-              <span className="text-gold-light inline-block hover:text-gold transition-colors duration-300">
-                {t('hero_title_prefix')}
-              </span>
-              <br />
-              <span className="text-ivory inline-block">
-                {t('hero_title_suffix')}
-              </span>
-            </motion.h1>
+              <span>Explore Public Record</span>
+              <ChevronDown className="w-3.5 h-3.5 text-white group-hover:translate-y-0.5 transition-transform" />
+            </motion.a>
 
-            {/* Subtitle / Role Tagline */}
-            <motion.p 
-              variants={itemVariants}
-              className="text-lg sm:text-xl font-medium text-gold/95 font-serif italic border-l-2 border-gold pl-4 py-0.5 drop-shadow-md"
+            <motion.a
+              href="#institutions"
+              whileHover={{ scale: 1.03, y: -2 }}
+              whileTap={{ scale: 0.97 }}
+              className="inline-flex items-center justify-center px-5 py-2.5 rounded-md border border-gold/70 bg-[#0B1120]/85 hover:bg-gold/25 text-gold font-semibold text-xs sm:text-sm backdrop-blur-md shadow-xl transition-all gap-1.5 w-full sm:w-auto"
             >
-              {t('hero_subhead')}
-            </motion.p>
-
-            {/* Description Paragraph */}
-            <motion.p 
-              variants={itemVariants}
-              className="text-base sm:text-lg text-ivory/90 leading-relaxed max-w-2xl font-sans drop-shadow-md"
-            >
-              {t('hero_copy')}
-            </motion.p>
-
-            {/* Mobile Portrait view */}
-            <motion.div variants={itemVariants} className="block lg:hidden my-6">
-              <motion.div 
-                whileHover={{ scale: 1.02 }}
-                className="relative mx-auto w-64 h-80 sm:w-72 sm:h-96 rounded-lg overflow-hidden border-2 border-gold/40 shadow-2xl"
-              >
-                <Image
-                  src="/images/48.jpg"
-                  alt="Shri Fatehsinh Mohansinh Chauhan"
-                  fill
-                  priority
-                  className="object-cover object-top"
-                  sizes="(max-width: 768px) 100vw, 400px"
-                />
-              </motion.div>
-            </motion.div>
-
-            {/* Interactive Call to Action Buttons */}
-            <motion.div variants={itemVariants} className="pt-4 flex flex-col sm:flex-row items-stretch sm:items-center gap-4">
-              <motion.a
-                href="#lineage"
-                whileHover={{ scale: 1.04, y: -3, boxShadow: "0 10px 25px -5px rgba(184, 75, 41, 0.5)" }}
-                whileTap={{ scale: 0.97 }}
-                transition={{ type: "spring", stiffness: 400, damping: 20 }}
-                className="inline-flex items-center justify-center px-7 py-3.5 rounded bg-terracotta hover:bg-terracotta-dark text-white font-medium shadow-lg transition-colors gap-2 text-base group"
-              >
-                <span>{t('hero_btn_explore')}</span>
-                <motion.div
-                  animate={{ y: [0, 4, 0] }}
-                  transition={{ repeat: Infinity, duration: 1.8, ease: "easeInOut" }}
-                >
-                  <ChevronDown className="w-5 h-5 text-white" />
-                </motion.div>
-              </motion.a>
-
-              <motion.a
-                href="#institutions"
-                whileHover={{ scale: 1.04, y: -3, borderColor: "rgba(212, 175, 55, 0.9)", backgroundColor: "rgba(212, 175, 55, 0.15)" }}
-                whileTap={{ scale: 0.97 }}
-                transition={{ type: "spring", stiffness: 400, damping: 20 }}
-                className="inline-flex items-center justify-center px-6 py-3.5 rounded border border-gold/60 bg-charcoal-dark/70 text-gold font-medium transition-all text-base backdrop-blur-md gap-2"
-              >
-                <Sparkles className="w-4 h-4 text-gold-light" />
-                <span>{t('hero_btn_institutions')}</span>
-              </motion.a>
-            </motion.div>
-
-            {/* Location Sub-label */}
-            <motion.div variants={itemVariants} className="pt-4 text-xs tracking-widest text-ivory/80 uppercase font-sans flex items-center gap-2 drop-shadow">
-              <MapPin className="w-3.5 h-3.5 text-gold animate-bounce" />
-              <span>Civic Stewardship · Silvassa, Dadra & Nagar Haveli</span>
-            </motion.div>
-
-          </div>
-
-          {/* Right Column: Desktop Portrait with Framer Motion Hover Effects */}
-          <div className="hidden lg:block lg:col-span-5 order-2">
-            <motion.div
-              variants={portraitVariants}
-              whileHover={{
-                y: -8,
-                scale: 1.025,
-                boxShadow: "0 25px 50px -12px rgba(212, 175, 55, 0.25)",
-              }}
-              transition={{ type: "spring", stiffness: 300, damping: 22 }}
-              className="relative mx-auto w-full max-w-md aspect-[3/4] rounded-xl overflow-hidden border-2 border-gold/50 shadow-2xl bg-charcoal-dark group cursor-pointer"
-            >
-              <Image
-                src="/images/48.jpg"
-                alt="Shri Fatehsinh Mohansinh Chauhan"
-                fill
-                priority
-                className="object-cover object-top group-hover:scale-105 transition-transform duration-700"
-                sizes="500px"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-charcoal-deep/95 via-transparent to-transparent opacity-90 group-hover:opacity-75 transition-opacity" />
-              
-              {/* Badge Footer overlay on image */}
-              <motion.div 
-                whileHover={{ scale: 1.02 }}
-                className="absolute bottom-4 left-4 right-4 p-4 rounded bg-charcoal-dark/95 backdrop-blur-md border border-gold/40 text-center shadow-lg transition-all group-hover:border-gold/80"
-              >
-                <span className="font-serif text-sm font-semibold text-gold block group-hover:text-gold-light transition-colors">
-                  Shri Fatehsinh Mohansinh Chauhan
-                </span>
-                <span className="text-[11px] text-ivory/80 block mt-0.5">
-                  Patriarch & Institution Builder · Silvassa
-                </span>
-              </motion.div>
-            </motion.div>
-          </div>
-
+              <Sparkles className="w-3.5 h-3.5 text-gold-light" />
+              <span>Educational Legacy</span>
+            </motion.a>
+          </motion.div>
         </motion.div>
       </div>
     </section>

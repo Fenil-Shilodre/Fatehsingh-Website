@@ -5,9 +5,8 @@ import Image from 'next/image';
 import { useLanguage } from '@/context/LanguageContext';
 import { SectionHeading } from '@/components/ui/SectionHeading';
 import { timelineData, TimelineItem } from '@/data/timeline';
-import { Button } from '@/components/ui/Button';
 import { useSmoothScroll } from '@/components/providers/SmoothScrollProvider';
-import { Lock, Award } from 'lucide-react';
+import { Award } from 'lucide-react';
 
 export const PublicServicePreview: React.FC = () => {
   const { t } = useLanguage();
@@ -269,23 +268,6 @@ export const PublicServicePreview: React.FC = () => {
               </div>
             );
           })}
-        </div>
-
-        {/* Disabled Future State Action Control */}
-        <div className="text-center pt-12">
-          <div className="inline-flex flex-col items-center gap-2">
-            <Button
-              variant="outline"
-              disabled
-              icon={<Lock className="w-4 h-4 text-gold-muted" />}
-              className="px-8 py-3 opacity-60 cursor-not-allowed border-gold/40 text-gold"
-            >
-              Explore Public Service Record
-            </Button>
-            <span className="text-xs text-ivory/40 italic">
-              Full Public Service archive page reserved for future phase
-            </span>
-          </div>
         </div>
       </div>
     </section>

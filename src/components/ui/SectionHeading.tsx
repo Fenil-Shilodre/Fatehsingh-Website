@@ -20,10 +20,10 @@ export const SectionHeading: React.FC<SectionHeadingProps> = ({
   return (
     <div className={`mb-12 ${center ? 'text-center max-w-3xl mx-auto' : 'max-w-2xl'} ${className}`}>
       {eyebrow && (
-        <span className={`inline-block text-xs font-semibold tracking-widest uppercase mb-3 px-3 py-1 rounded border ${
+        <span className={`inline-block text-xs font-semibold tracking-widest uppercase mb-3 px-3 py-1 rounded-full border ${
           light 
-            ? 'text-gold-light border-gold/30 bg-gold/10' 
-            : 'text-terracotta border-terracotta/20 bg-terracotta/5'
+            ? 'text-gold-light border-gold/40 bg-gold/10' 
+            : 'text-royal-800 border-royal-300/60 bg-royal-50'
         }`}>
           {eyebrow}
         </span>
@@ -34,7 +34,7 @@ export const SectionHeading: React.FC<SectionHeadingProps> = ({
         {title}
       </h2>
       <div className={`h-0.5 w-16 mb-4 ${center ? 'mx-auto' : ''} ${
-        light ? 'bg-gold' : 'bg-terracotta'
+        light ? 'bg-gold' : 'bg-royal-800'
       }`} />
       {subtitle && (
         <p className={`text-base md:text-lg leading-relaxed ${

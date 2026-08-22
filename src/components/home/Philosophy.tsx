@@ -51,7 +51,7 @@ export const Philosophy: React.FC = () => {
           <div className="lg:col-span-6 space-y-6 flex flex-col justify-between">
             {/* Pillar 1 */}
             <div className="bg-white p-6 rounded-lg border border-sandstone shadow-sm flex items-start gap-4">
-              <div className="w-10 h-10 rounded-full bg-forest/10 text-forest flex items-center justify-center shrink-0 mt-1">
+              <div className="w-10 h-10 rounded-full bg-gold/15 text-gold-dark flex items-center justify-center shrink-0 mt-1 border border-gold/30">
                 <Sprout className="w-5 h-5" />
               </div>
               <div>

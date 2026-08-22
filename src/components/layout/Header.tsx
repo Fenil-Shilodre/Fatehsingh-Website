@@ -15,65 +15,90 @@ export const Header: React.FC = () => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 20);
     };
+
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  // Split nav items into left and right groups for centered brand layout
+  const leftNavItems = navItems.slice(0, 4);
+  const rightNavItems = navItems.slice(4);
 
   return (
     <>
       <header
         className={`fixed top-0 left-0 right-0 z-40 transition-colors duration-200 ${
           isScrolled
-            ? 'bg-charcoal-dark/95 backdrop-blur-md shadow-md py-3.5 border-b border-gold/20'
-            : 'bg-gradient-to-b from-charcoal-deep/90 via-charcoal-dark/60 to-transparent py-5'
+            ? 'bg-[#060A14]/95 backdrop-blur-md shadow-md py-3.5 border-b border-gold/20'
+            : 'bg-gradient-to-b from-[#060A14]/90 via-[#060A14]/60 to-transparent py-4 sm:py-5'
         }`}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
-          {/* Left: Refined Fatehsinh Brand Identity Lockup */}
-          <a
-            href="#home"
-            className="flex flex-col focus:outline-none"
-            aria-label="Fatehsinh Chauhan"
-          >
-            <span className="font-serif font-bold text-lg sm:text-xl tracking-wider text-ivory">
-              FATEHSINH CHAUHAN
-            </span>
-            <span className="text-[10px] sm:text-xs tracking-widest text-gold-light/70 uppercase font-sans">
-              {t('brand_tagline')}
-            </span>
-          </a>
-
-          {/* Center/Right: Desktop Bounded Institutional Navigation */}
-          <nav className="hidden lg:flex items-center space-x-1 xl:space-x-2">
-            {navItems.map((item) => {
-              if (item.isDisabled) {
-                return (
-                  <span
-                    key={item.id}
-                    className="px-3 py-1.5 text-xs xl:text-sm font-medium text-ivory/40 cursor-not-allowed select-none pointer-events-none"
-                    aria-disabled="true"
-                  >
-                    {t(item.labelKey as any, item.defaultLabel)}
-                  </span>
-                );
-              }
+          
+          {/* Desktop Left Nav Items */}
+          <nav className="hidden lg:flex items-center space-x-1 xl:space-x-3 flex-1 justify-start">
+            {leftNavItems.map((item) => {
+              const isActive = item.id === 'home';
 
               return (
                 <a
                   key={item.id}
                   href={item.href}
-                  className="px-3.5 py-1.5 text-xs xl:text-sm font-semibold tracking-wide text-gold bg-gold/10 border border-gold/40 rounded-sm shadow-sm"
+                  className={`relative py-1.5 px-2 text-xs xl:text-sm font-medium tracking-wide transition-colors duration-200 ${
+                    isActive
+                      ? 'text-gold font-semibold'
+                      : 'text-ivory/70 hover:text-gold'
+                  }`}
                 >
-                  <span className="relative">
+                  <span className="relative pb-1">
                     {t(item.labelKey as any, item.defaultLabel)}
-                    <span className="absolute -bottom-1 left-0 right-0 h-0.5 bg-gold rounded-full" />
+                    {isActive && (
+                      <span className="absolute -bottom-1 left-0 right-0 h-0.5 bg-gold rounded-full transition-all duration-300" />
+                    )}
                   </span>
                 </a>
               );
             })}
           </nav>
 
-          {/* Right: Mobile Menu Button */}
+          {/* Center Brand Identity (FATEHSINH CHAUHAN in the middle) */}
+          <a
+            href="#home"
+            className="flex items-center justify-center focus:outline-none px-4 shrink-0 text-center"
+            aria-label="Fatehsinh Chauhan"
+          >
+            <span className="font-serif font-bold text-base sm:text-lg xl:text-xl tracking-wider text-ivory hover:text-gold transition-colors">
+              FATEHSINH CHAUHAN
+            </span>
+          </a>
+
+          {/* Desktop Right Nav Items */}
+          <nav className="hidden lg:flex items-center space-x-1 xl:space-x-3 flex-1 justify-end">
+            {rightNavItems.map((item) => {
+              const isActive = false;
+
+              return (
+                <a
+                  key={item.id}
+                  href={item.href}
+                  className={`relative py-1.5 px-2 text-xs xl:text-sm font-medium tracking-wide transition-colors duration-200 ${
+                    isActive
+                      ? 'text-gold font-semibold'
+                      : 'text-ivory/70 hover:text-gold'
+                  }`}
+                >
+                  <span className="relative pb-1">
+                    {t(item.labelKey as any, item.defaultLabel)}
+                    {isActive && (
+                      <span className="absolute -bottom-1 left-0 right-0 h-0.5 bg-gold rounded-full transition-all duration-300" />
+                    )}
+                  </span>
+                </a>
+              );
+            })}
+          </nav>
+
+          {/* Mobile Menu Button on Right */}
           <div className="flex items-center lg:hidden">
             <button
               onClick={() => setMobileMenuOpen(true)}
@@ -83,6 +108,7 @@ export const Header: React.FC = () => {
               <Menu className="w-6 h-6" />
             </button>
           </div>
+
         </div>
       </header>
 

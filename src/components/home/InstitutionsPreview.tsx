@@ -22,7 +22,7 @@ export const InstitutionsPreview: React.FC = () => {
         {/* Campus Overview Banner */}
         <div className="bg-white rounded-xl border border-sandstone shadow-md overflow-hidden mb-12 grid grid-cols-1 lg:grid-cols-12 gap-8 p-6 md:p-8">
           <div className="lg:col-span-8 space-y-4">
-            <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-forest">
+            <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-gold-dark">
               <MapPin className="w-4 h-4 text-terracotta" />
               <span>{t('campus_banner_loc')}</span>
             </div>
@@ -35,7 +35,7 @@ export const InstitutionsPreview: React.FC = () => {
 
             <div className="grid grid-cols-3 gap-4 pt-4 border-t border-sandstone">
               <div>
-                <span className="font-serif text-xl sm:text-2xl font-bold text-forest block">{t('campus_stat_area')}</span>
+                <span className="font-serif text-xl sm:text-2xl font-bold text-charcoal-dark block">{t('campus_stat_area')}</span>
                 <span className="text-xs text-charcoal/60 block">{t('campus_stat_area_lbl')}</span>
               </div>
               <div>
@@ -83,7 +83,7 @@ export const InstitutionsPreview: React.FC = () => {
               {/* Institution Content */}
               <div className="p-6 flex-1 flex flex-col justify-between space-y-4">
                 <div>
-                  <span className="text-xs font-semibold uppercase tracking-wider text-forest block mb-1">
+                  <span className="text-xs font-semibold uppercase tracking-wider text-gold-dark block mb-1">
                     {t(inst.tagKey as any, inst.defaultTag)}
                   </span>
                   <h4 className="font-serif text-xl font-bold text-charcoal-dark mb-2">
@@ -106,14 +106,14 @@ export const InstitutionsPreview: React.FC = () => {
                   </ul>
                 </div>
 
-                <div className="pt-4 border-t border-sandstone flex items-center justify-between text-xs text-charcoal/60">
-                  <span className="flex items-center gap-1 font-medium">
-                    <Phone className="w-3.5 h-3.5 text-forest" />
-                    {inst.contact}
-                  </span>
-                  <span className="text-[11px] text-charcoal/40 italic">
-                    Institutional Record
-                  </span>
+                <div className="pt-4 border-t border-sandstone">
+                  <a
+                    href={`tel:${inst.contact.replace(/[^0-9+]/g, '')}`}
+                    className="w-full inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded bg-charcoal-dark/5 hover:bg-charcoal-dark text-charcoal-dark hover:text-white border border-charcoal-dark/20 hover:border-charcoal-dark transition-all text-xs font-bold tracking-wider uppercase shadow-sm"
+                  >
+                    <Phone className="w-3.5 h-3.5" />
+                    <span>Call Us</span>
+                  </a>
                 </div>
               </div>
             </div>
