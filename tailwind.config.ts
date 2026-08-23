@@ -10,44 +10,69 @@ const config: Config = {
     extend: {
       colors: {
         ivory: {
-          DEFAULT: "#F8FAFC",
-          warm: "#F1F5F9",
-          dark: "#E2E8F0",
-          ice: "#EFF6FF",
+          DEFAULT: "#FFFDF9",
+          warm: "#FAF5EE",
+          dark: "#F3ECE0",
+          ice: "#FFF7ED",
         },
         charcoal: {
-          light: "#1E2E52",
-          DEFAULT: "#0F1D3D",
-          dark: "#0A1329",
-          deep: "#060B18",
+          light: "#242938",
+          DEFAULT: "#151924",
+          dark: "#0E111A",
+          deep: "#080A10",
         },
-        royal: {
-          50: "#EFF6FF",
-          100: "#DBEAFE",
-          200: "#BFDBFE",
-          300: "#93C5FD",
-          400: "#60A5FA",
-          500: "#3B82F6",
-          600: "#2563EB",
-          700: "#1D4ED8",
-          800: "#1E40AF",
-          900: "#1E3A8A",
-          950: "#0F1E4A",
+        orange: {
+          50: "#FFF7ED",
+          100: "#FFEDD5",
+          200: "#FED7AA",
+          300: "#FDBA74",
+          400: "#FB923C",
+          500: "#F97316", // Vibrant Saffron Orange
+          600: "#EA580C", // Rich Royal Orange
+          700: "#C2410C", // Deep Rust Orange
+          800: "#9A3412",
+          900: "#7C2D12",
+          950: "#431407",
+        },
+        amber: {
+          50: "#FFFBEB",
+          100: "#FEF3C7",
+          200: "#FDE68A",
+          300: "#FCD34D",
+          400: "#FBBF24",
+          500: "#F59E0B", // Radiant Golden Amber
+          600: "#D97706",
+          700: "#B45309",
+          800: "#92400E",
+          900: "#78350F",
         },
         terracotta: {
-          light: "#DC2626",
-          DEFAULT: "#991B1B", // Deep Regal Crimson
-          dark: "#7F1D1D",
+          light: "#FB923C",
+          DEFAULT: "#EA580C", // Rich Saffron Orange for buttons
+          dark: "#C2410C",
         },
         gold: {
-          light: "#F3DF95",   // Radiant Champagne Gold
-          DEFAULT: "#D4AF37", // Imperial Gold
-          dark: "#A38025",   // Burnished Gold
-          muted: "#80631B",
+          light: "#FDE68A",   // Radiant Amber Gold
+          DEFAULT: "#F59E0B", // Imperial Amber Gold
+          dark: "#D97706",   // Burnished Amber Gold
+          muted: "#B45309",
+        },
+        royal: {
+          50: "#FFF7ED",
+          100: "#FFEDD5",
+          200: "#FED7AA",
+          300: "#FDBA74",
+          400: "#FB923C",
+          500: "#F97316",
+          600: "#EA580C",
+          700: "#C2410C",
+          800: "#9A3412",
+          900: "#7C2D12",
+          950: "#431407",
         },
         sandstone: {
-          DEFAULT: "#E2E8F0", // Clean Platinum Slate Border
-          dark: "#CBD5E1",
+          DEFAULT: "#EFE6D8", // Warm Sandstone / Ivory Slate
+          dark: "#D6C7B2",
         }
       },
       fontFamily: {

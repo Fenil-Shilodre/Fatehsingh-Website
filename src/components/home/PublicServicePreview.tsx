@@ -109,9 +109,9 @@ export const PublicServicePreview: React.FC = () => {
         <div className="flex flex-wrap items-center justify-center gap-2 mb-16">
           <button
             onClick={() => setSelectedEra('all')}
-            className={`px-4 py-2 text-xs font-semibold rounded transition-colors ${
+            className={`px-4 py-2 text-xs font-semibold rounded-full transition-colors ${
               selectedEra === 'all'
-                ? 'bg-gold text-charcoal-dark font-bold shadow-md shadow-gold/20'
+                ? 'bg-orange-600 text-white font-bold shadow-md shadow-orange-950/40 border border-orange-400/50'
                 : 'bg-white/10 text-ivory/70 hover:text-ivory'
             }`}
           >
@@ -119,9 +119,9 @@ export const PublicServicePreview: React.FC = () => {
           </button>
           <button
             onClick={() => setSelectedEra('1980s')}
-            className={`px-4 py-2 text-xs font-semibold rounded transition-colors ${
+            className={`px-4 py-2 text-xs font-semibold rounded-full transition-colors ${
               selectedEra === '1980s'
-                ? 'bg-gold text-charcoal-dark font-bold shadow-md shadow-gold/20'
+                ? 'bg-orange-600 text-white font-bold shadow-md shadow-orange-950/40 border border-orange-400/50'
                 : 'bg-white/10 text-ivory/70 hover:text-ivory'
             }`}
           >
@@ -129,9 +129,9 @@ export const PublicServicePreview: React.FC = () => {
           </button>
           <button
             onClick={() => setSelectedEra('1990s')}
-            className={`px-4 py-2 text-xs font-semibold rounded transition-colors ${
+            className={`px-4 py-2 text-xs font-semibold rounded-full transition-colors ${
               selectedEra === '1990s'
-                ? 'bg-gold text-charcoal-dark font-bold shadow-md shadow-gold/20'
+                ? 'bg-orange-600 text-white font-bold shadow-md shadow-orange-950/40 border border-orange-400/50'
                 : 'bg-white/10 text-ivory/70 hover:text-ivory'
             }`}
           >
@@ -139,9 +139,9 @@ export const PublicServicePreview: React.FC = () => {
           </button>
           <button
             onClick={() => setSelectedEra('2000s')}
-            className={`px-4 py-2 text-xs font-semibold rounded transition-colors ${
+            className={`px-4 py-2 text-xs font-semibold rounded-full transition-colors ${
               selectedEra === '2000s'
-                ? 'bg-gold text-charcoal-dark font-bold shadow-md shadow-gold/20'
+                ? 'bg-orange-600 text-white font-bold shadow-md shadow-orange-950/40 border border-orange-400/50'
                 : 'bg-white/10 text-ivory/70 hover:text-ivory'
             }`}
           >
@@ -165,14 +165,14 @@ export const PublicServicePreview: React.FC = () => {
 
             {/* Dynamic Progress Fill Line with Integrated Glowing Head Orb at Tip */}
             <div
-              className="absolute top-0 left-0 w-full bg-gradient-to-b from-terracotta via-terracotta-light to-gold rounded-full shadow-[0_0_12px_#B8533C]"
+              className="absolute top-0 left-0 w-full bg-gradient-to-b from-orange-600 via-amber-500 to-amber-300 rounded-full shadow-[0_0_12px_#EA580C]"
               style={{
                 height: `${lineMeta.fillHeight}px`,
               }}
             >
               {/* Head Orb is physically ATTACHED to the bottom tip of the fill line with ZERO GAP */}
               {lineMeta.fillHeight > 5 && lineMeta.fillHeight < lineMeta.height - 5 && (
-                <div className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 w-4 h-4 bg-gold rounded-full shadow-[0_0_16px_#C5A059,0_0_25px_#B8533C] ring-4 ring-terracotta/50 animate-pulse z-20" />
+                <div className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 w-4 h-4 bg-amber-400 rounded-full shadow-[0_0_16px_#F59E0B,0_0_25px_#EA580C] ring-4 ring-orange-500/50 animate-pulse z-20" />
               )}
             </div>
           </div>
@@ -188,16 +188,16 @@ export const PublicServicePreview: React.FC = () => {
                 <div
                   className={`timeline-node-dot absolute left-4 md:left-6 -translate-x-1/2 top-6 -translate-y-1/2 w-7 h-7 rounded-full flex items-center justify-center transition-all duration-300 z-10 ${
                     isCurrentFocus
-                      ? 'bg-terracotta ring-8 ring-terracotta/30 shadow-[0_0_25px_#B8533C] scale-125'
+                      ? 'bg-orange-600 ring-8 ring-orange-500/30 shadow-[0_0_25px_#EA580C] scale-125'
                       : isActive
-                      ? 'bg-gold ring-4 ring-gold/30 shadow-[0_0_12px_rgba(197,160,89,0.7)]'
-                      : 'bg-charcoal border-2 border-gold/40'
+                      ? 'bg-amber-400 ring-4 ring-amber-400/30 shadow-[0_0_12px_rgba(245,158,11,0.7)]'
+                      : 'bg-charcoal border-2 border-orange-500/40'
                   }`}
                 >
                   {/* Inner Center Dot */}
                   <div
                     className={`w-2.5 h-2.5 rounded-full transition-colors ${
-                      isActive ? 'bg-charcoal-dark' : 'bg-gold/40'
+                      isActive ? 'bg-charcoal-dark' : 'bg-amber-400/40'
                     }`}
                   />
                 </div>
@@ -205,7 +205,7 @@ export const PublicServicePreview: React.FC = () => {
                 {/* Left Desktop Year Marker */}
                 <div className="hidden md:block absolute -left-36 top-6 -translate-y-1/2 text-right w-28 transition-all duration-300">
                   <span className={`font-serif text-sm font-bold block transition-colors duration-300 ${
-                    isActive ? 'text-gold scale-105' : 'text-ivory/50'
+                    isActive ? 'text-amber-300 scale-105' : 'text-ivory/50'
                   }`}>
                     {item.yearText}
                   </span>
@@ -215,25 +215,25 @@ export const PublicServicePreview: React.FC = () => {
                 </div>
 
                 {/* Card Container */}
-                <div className={`bg-charcoal p-6 md:p-8 rounded-lg border transition-all duration-300 shadow-md grid grid-cols-1 md:grid-cols-12 gap-6 items-center ${
+                <div className={`bg-charcoal p-6 md:p-8 rounded-xl border transition-all duration-300 shadow-md grid grid-cols-1 md:grid-cols-12 gap-6 items-center ${
                   isCurrentFocus
-                    ? 'border-gold/60 ring-1 ring-gold/30 shadow-[0_0_25px_rgba(197,160,89,0.15)] bg-charcoal/95'
+                    ? 'border-orange-500/60 ring-1 ring-orange-500/30 shadow-[0_0_25px_rgba(234,88,12,0.2)] bg-charcoal/95'
                     : isActive
-                    ? 'border-gold/30'
+                    ? 'border-orange-500/30'
                     : 'border-white/10 opacity-80'
                 }`}>
                   {/* Content */}
                   <div className="md:col-span-8 space-y-3">
                     <div className="md:hidden flex items-center justify-between gap-2 mb-1">
-                      <span className={`font-serif text-sm font-bold ${isActive ? 'text-gold' : 'text-ivory/60'}`}>
+                      <span className={`font-serif text-sm font-bold ${isActive ? 'text-amber-300' : 'text-ivory/60'}`}>
                         {item.yearText}
                       </span>
-                      <span className="text-[10px] text-gold-light uppercase tracking-wider bg-gold/10 px-2 py-0.5 rounded">
+                      <span className="text-[10px] text-amber-300 uppercase tracking-wider bg-orange-500/10 px-2 py-0.5 rounded">
                         {item.category}
                       </span>
                     </div>
 
-                    <span className="text-xs font-semibold uppercase tracking-wider text-terracotta-light block">
+                    <span className="text-xs font-semibold uppercase tracking-wider text-orange-400 block">
                       {item.roleText}
                     </span>
 
