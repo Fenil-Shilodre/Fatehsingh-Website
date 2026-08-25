@@ -61,7 +61,8 @@ const AnimatedCounter: React.FC<{
 
   return (
     <span>
-      {formattedValue}{suffix}
+      {formattedValue}
+      {suffix && <span className="text-[#B8860B]">{suffix}</span>}
     </span>
   );
 };
@@ -101,27 +102,23 @@ export const ImpactStats: React.FC = () => {
   return (
     <section 
       ref={sectionRef} 
-      className="py-14 bg-[#080A10] text-ivory relative overflow-hidden"
+      className="py-16 bg-[#F3EBD7] text-ink relative overflow-hidden border-y border-[#E7DEC9]"
     >
-      {/* Seamless Ambient Lighting - No Hard Top Line */}
-      <div className="absolute inset-0 bg-gradient-to-b from-[#080A10] via-[#0E111A] to-[#080A10] pointer-events-none" />
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[650px] h-32 bg-orange-600/10 rounded-full blur-[100px] pointer-events-none" />
-
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        {/* Subtle Category Pill */}
-        <div className="text-center mb-8">
+        {/* Category Pill */}
+        <div className="text-center mb-10">
           <motion.span 
             initial={{ opacity: 0, scale: 0.9 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
-            className="text-[11px] uppercase tracking-[0.22em] text-amber-400 font-semibold px-4 py-1 rounded-full bg-orange-500/10 border border-orange-500/30 backdrop-blur-md"
+            className="section-eyebrow"
           >
             {t('stat_tag')}
           </motion.span>
         </div>
 
-        {/* Clean, Seamless Counter Ribbon */}
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-0 lg:divide-x lg:divide-orange-500/20">
+        {/* Counter Ribbon */}
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-0 lg:divide-x lg:divide-[#E7DEC9]">
           {stats.map((stat, idx) => (
             <motion.div
               key={idx}
@@ -129,9 +126,9 @@ export const ImpactStats: React.FC = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: idx * 0.08 }}
-              className="text-center px-4 py-3 group cursor-default"
+              className="text-center px-4 group cursor-default"
             >
-              <div className="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold text-amber-300 mb-1.5 tracking-tight min-h-[3rem] flex items-center justify-center group-hover:scale-105 group-hover:text-amber-400 transition-all duration-300 drop-shadow-[0_2px_10px_rgba(245,158,11,0.25)]">
+              <div className="font-serif text-4xl sm:text-5xl lg:text-6xl font-semibold text-[#0F4A3C] mb-2 tracking-tight min-h-[3.5rem] flex items-center justify-center group-hover:scale-105 transition-all duration-300">
                 <AnimatedCounter
                   target={stat.target}
                   start={stat.start}
@@ -140,7 +137,7 @@ export const ImpactStats: React.FC = () => {
                   isVisible={isVisible}
                 />
               </div>
-              <div className="text-[11px] sm:text-xs font-semibold text-ivory/75 uppercase tracking-[0.14em] font-sans group-hover:text-amber-200 transition-colors">
+              <div className="text-xs font-semibold text-[#6B7385] uppercase tracking-[0.2em] font-sans group-hover:text-ink transition-colors">
                 {t(stat.labelKey as any, stat.defaultLabel)}
               </div>
             </motion.div>

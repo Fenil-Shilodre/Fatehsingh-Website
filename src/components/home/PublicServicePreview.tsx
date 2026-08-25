@@ -6,268 +6,200 @@ import { useLanguage } from '@/context/LanguageContext';
 import { SectionHeading } from '@/components/ui/SectionHeading';
 import { timelineData, TimelineItem } from '@/data/timeline';
 import { useSmoothScroll } from '@/components/providers/SmoothScrollProvider';
-import { Award } from 'lucide-react';
+import { Award, Landmark, ScrollText, Star } from 'lucide-react';
 
 export const PublicServicePreview: React.FC = () => {
   const { t } = useLanguage();
   const { lenis } = useSmoothScroll();
   const [selectedEra, setSelectedEra] = useState<'all' | '1980s' | '1990s' | '2000s'>('all');
   
-  const timelineRef = useRef<HTMLDivElement>(null);
-  const [lineMeta, setLineMeta] = useState<{ top: number; height: number; fillHeight: number }>({
-    top: 0,
-    height: 0,
-    fillHeight: 0,
-  });
-  const [activeItemIndex, setActiveItemIndex] = useState<number>(0);
+  const trackRef = useRef<HTMLDivElement>(null);
+  const fillRef = useRef<HTMLDivElement>(null);
+  const headRef = useRef<HTMLDivElement>(null);
 
   const filteredItems = selectedEra === 'all'
     ? timelineData
     : timelineData.filter(item => item.era === selectedEra);
 
-  // Synchronous Scroll Gesture Line Fill strictly bounded between Node 1 center and Last Node center
+  // Pure Lenis-driven smooth scroll progression
   useEffect(() => {
-    const handleScroll = () => {
-      if (!timelineRef.current) return;
+    const updateProgress = (currentScrollY?: number) => {
+      const el = trackRef.current;
+      if (!el) return;
+      
+      const rect = el.getBoundingClientRect();
+      const vh = window.innerHeight;
+      const scrollY = typeof currentScrollY === 'number' ? currentScrollY : window.scrollY;
+      const elTopAbs = rect.top + window.scrollY;
+      const elH = el.offsetHeight || 1;
+      
+      // Progress calculation linked to viewport
+      const start = elTopAbs - vh * 0.70;
+      const end = elTopAbs + elH - vh * 0.30;
+      const denom = Math.max(1, end - start);
+      const pct = Math.max(0, Math.min(100, ((scrollY - start) / denom) * 100));
 
-      const nodes = timelineRef.current.querySelectorAll('.timeline-node-dot');
-      if (nodes.length === 0) return;
+      if (fillRef.current) {
+        fillRef.current.style.height = `${pct}%`;
+      }
+      if (headRef.current) {
+        headRef.current.style.top = `${pct}%`;
+      }
+    };
 
-      const firstNode = nodes[0] as HTMLElement;
-      const lastNode = nodes[nodes.length - 1] as HTMLElement;
-      const timelineRect = timelineRef.current.getBoundingClientRect();
+    const handleLenisScroll = (e: any) => {
+      const scrollVal = typeof e?.scroll === 'number' ? e.scroll : window.scrollY;
+      updateProgress(scrollVal);
+    };
 
-      const firstNodeRect = firstNode.getBoundingClientRect();
-      const lastNodeRect = lastNode.getBoundingClientRect();
-
-      const firstNodeCenterY = firstNodeRect.top + firstNodeRect.height / 2;
-      const lastNodeCenterY = lastNodeRect.top + lastNodeRect.height / 2;
-
-      // Start line at exact center of first circle node
-      const startY = firstNodeCenterY - timelineRect.top;
-      // End line at exact center of last circle node
-      const endY = lastNodeCenterY - timelineRect.top;
-      const totalLength = Math.max(0, endY - startY);
-
-      // Trigger focal point at 50% of viewport height
-      const focalPointY = window.innerHeight * 0.5;
-      const scrollableDist = Math.max(1, lastNodeCenterY - firstNodeCenterY);
-
-      let progress = (focalPointY - firstNodeCenterY) / scrollableDist;
-      progress = Math.max(0, Math.min(1, progress));
-
-      const fillHeight = progress * totalLength;
-
-      setLineMeta({
-        top: startY,
-        height: totalLength,
-        fillHeight,
-      });
-
-      // Active node calculation based on focal point
-      let currentActive = 0;
-      nodes.forEach((node, idx) => {
-        const r = node.getBoundingClientRect();
-        if (r.top <= focalPointY + 20) {
-          currentActive = idx;
-        }
-      });
-
-      setActiveItemIndex(currentActive);
+    const handleNativeScroll = () => {
+      updateProgress(window.scrollY);
     };
 
     if (lenis) {
-      lenis.on('scroll', handleScroll);
-    } else {
-      window.addEventListener('scroll', handleScroll, { passive: true });
+      lenis.on('scroll', handleLenisScroll);
     }
+    window.addEventListener('scroll', handleNativeScroll, { passive: true });
+    window.addEventListener('resize', handleNativeScroll);
 
-    handleScroll();
-    window.addEventListener('resize', handleScroll, { passive: true });
+    updateProgress();
+    const t1 = setTimeout(() => updateProgress(), 150);
+    const t2 = setTimeout(() => updateProgress(), 600);
 
     return () => {
       if (lenis) {
-        lenis.off('scroll', handleScroll);
-      } else {
-        window.removeEventListener('scroll', handleScroll);
+        lenis.off('scroll', handleLenisScroll);
       }
-      window.removeEventListener('resize', handleScroll);
+      window.removeEventListener('scroll', handleNativeScroll);
+      window.removeEventListener('resize', handleNativeScroll);
+      clearTimeout(t1);
+      clearTimeout(t2);
     };
-  }, [lenis, selectedEra]);
+  }, [lenis, selectedEra, filteredItems.length]);
 
   return (
-    <section id="service" className="py-20 bg-charcoal-dark text-ivory relative overflow-hidden">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="service" className="relative bg-[#FAF5EB] py-24 paper-grain text-ink">
+      <div className="max-w-6xl mx-auto px-6">
         <SectionHeading
-          light
           eyebrow={t('service_eyebrow')}
-          title={<span>Four Decades of <span className="text-gold">Civic Stewardship</span></span>}
+          title={<span>Four Decades of <span className="text-emerald italic font-normal">Civic Stewardship</span></span>}
           subtitle={t('service_subtitle')}
         />
 
-        {/* Era Filter Controls */}
-        <div className="flex flex-wrap items-center justify-center gap-2 mb-16">
+        {/* Filter Chips with Lucide Icons */}
+        <div className="mt-10 flex flex-wrap justify-center gap-3">
           <button
             onClick={() => setSelectedEra('all')}
-            className={`px-4 py-2 text-xs font-semibold rounded-full transition-colors ${
-              selectedEra === 'all'
-                ? 'bg-orange-600 text-white font-bold shadow-md shadow-orange-950/40 border border-orange-400/50'
-                : 'bg-white/10 text-ivory/70 hover:text-ivory'
-            }`}
+            className={`chip ${selectedEra === 'all' ? 'active' : ''}`}
           >
-            {t('filter_all')}
+            <Award className="w-4 h-4" />
+            <span>All Milestones</span>
           </button>
           <button
             onClick={() => setSelectedEra('1980s')}
-            className={`px-4 py-2 text-xs font-semibold rounded-full transition-colors ${
-              selectedEra === '1980s'
-                ? 'bg-orange-600 text-white font-bold shadow-md shadow-orange-950/40 border border-orange-400/50'
-                : 'bg-white/10 text-ivory/70 hover:text-ivory'
-            }`}
+            className={`chip ${selectedEra === '1980s' ? 'active' : ''}`}
           >
-            🏛️ 1980s: Dawn of Public Life
+            <Landmark className="w-4 h-4" />
+            <span>1980s: Dawn of Public Life</span>
           </button>
           <button
             onClick={() => setSelectedEra('1990s')}
-            className={`px-4 py-2 text-xs font-semibold rounded-full transition-colors ${
-              selectedEra === '1990s'
-                ? 'bg-orange-600 text-white font-bold shadow-md shadow-orange-950/40 border border-orange-400/50'
-                : 'bg-white/10 text-ivory/70 hover:text-ivory'
-            }`}
+            className={`chip ${selectedEra === '1990s' ? 'active' : ''}`}
           >
-            📜 1990s: Governance & Council
+            <ScrollText className="w-4 h-4" />
+            <span>1990s: Governance & Council</span>
           </button>
           <button
             onClick={() => setSelectedEra('2000s')}
-            className={`px-4 py-2 text-xs font-semibold rounded-full transition-colors ${
-              selectedEra === '2000s'
-                ? 'bg-orange-600 text-white font-bold shadow-md shadow-orange-950/40 border border-orange-400/50'
-                : 'bg-white/10 text-ivory/70 hover:text-ivory'
-            }`}
+            className={`chip ${selectedEra === '2000s' ? 'active' : ''}`}
           >
-            🌟 2000s+: Institutional Leadership
+            <Star className="w-4 h-4" />
+            <span>2000s+: Institutional Leadership</span>
           </button>
         </div>
 
-        {/* Vertical Timeline Container */}
-        <div ref={timelineRef} className="relative ml-2 md:ml-40 space-y-16 my-8">
+        {/* Timeline Track with Scrolling Rail and Glowing Orb */}
+        <div ref={trackRef} className="mt-16 relative">
           
-          {/* Outer Track Bounds Container (Node 1 Center to Node N Center) */}
-          <div
-            className="absolute left-4 md:left-6 -translate-x-1/2 w-[3px] pointer-events-none"
-            style={{
-              top: `${lineMeta.top}px`,
-              height: `${lineMeta.height}px`,
-            }}
-          >
-            {/* Background Track Line - Connects Node 1 to Last Node */}
-            <div className="w-full h-full bg-white/20 rounded-full" />
-
-            {/* Dynamic Progress Fill Line with Integrated Glowing Head Orb at Tip */}
+          {/* Continuous Rail Line & Lenis-Driven Head Orb */}
+          <div className="timeline-rail" aria-hidden="true">
+            <div className="timeline-rail-bg" />
             <div
-              className="absolute top-0 left-0 w-full bg-gradient-to-b from-orange-600 via-amber-500 to-amber-300 rounded-full shadow-[0_0_12px_#EA580C]"
-              style={{
-                height: `${lineMeta.fillHeight}px`,
-              }}
-            >
-              {/* Head Orb is physically ATTACHED to the bottom tip of the fill line with ZERO GAP */}
-              {lineMeta.fillHeight > 5 && lineMeta.fillHeight < lineMeta.height - 5 && (
-                <div className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 w-4 h-4 bg-amber-400 rounded-full shadow-[0_0_16px_#F59E0B,0_0_25px_#EA580C] ring-4 ring-orange-500/50 animate-pulse z-20" />
-              )}
-            </div>
+              ref={fillRef}
+              className="timeline-rail-fill"
+              style={{ height: '0%' }}
+            />
+            <div
+              ref={headRef}
+              className="timeline-rail-head"
+              style={{ top: '0%' }}
+            />
           </div>
 
-          {filteredItems.map((item: TimelineItem, index: number) => {
-            const isActive = index <= activeItemIndex;
-            const isCurrentFocus = index === activeItemIndex;
-
-            return (
-              <div key={item.id} className="timeline-node-wrapper relative group pl-12 md:pl-16">
-                
-                {/* Node Circle */}
-                <div
-                  className={`timeline-node-dot absolute left-4 md:left-6 -translate-x-1/2 top-6 -translate-y-1/2 w-7 h-7 rounded-full flex items-center justify-center transition-all duration-300 z-10 ${
-                    isCurrentFocus
-                      ? 'bg-orange-600 ring-8 ring-orange-500/30 shadow-[0_0_25px_#EA580C] scale-125'
-                      : isActive
-                      ? 'bg-amber-400 ring-4 ring-amber-400/30 shadow-[0_0_12px_rgba(245,158,11,0.7)]'
-                      : 'bg-charcoal border-2 border-orange-500/40'
-                  }`}
-                >
-                  {/* Inner Center Dot */}
-                  <div
-                    className={`w-2.5 h-2.5 rounded-full transition-colors ${
-                      isActive ? 'bg-charcoal-dark' : 'bg-amber-400/40'
-                    }`}
-                  />
-                </div>
-
-                {/* Left Desktop Year Marker */}
-                <div className="hidden md:block absolute -left-36 top-6 -translate-y-1/2 text-right w-28 transition-all duration-300">
-                  <span className={`font-serif text-sm font-bold block transition-colors duration-300 ${
-                    isActive ? 'text-amber-300 scale-105' : 'text-ivory/50'
-                  }`}>
+          {/* Milestone Items */}
+          <div className="space-y-10">
+            {filteredItems.map((item: TimelineItem) => (
+              <div
+                key={item.id}
+                className="relative pl-[110px] md:pl-[170px] timeline-row group"
+              >
+                {/* Left Date / Decade Marker */}
+                <div className="absolute left-0 top-4 w-[76px] md:w-[110px] text-right">
+                  <div className="font-serif text-[#0F4A3C] font-semibold italic text-base md:text-lg">
                     {item.yearText}
-                  </span>
-                  <span className="text-[10px] text-ivory/40 uppercase tracking-widest block">
+                  </div>
+                  <div className="text-[10px] tracking-widest text-[#B8860B] uppercase mt-0.5 font-semibold">
                     {item.era}
-                  </span>
+                  </div>
                 </div>
 
-                {/* Card Container */}
-                <div className={`bg-charcoal p-6 md:p-8 rounded-xl border transition-all duration-300 shadow-md grid grid-cols-1 md:grid-cols-12 gap-6 items-center ${
-                  isCurrentFocus
-                    ? 'border-orange-500/60 ring-1 ring-orange-500/30 shadow-[0_0_25px_rgba(234,88,12,0.2)] bg-charcoal/95'
-                    : isActive
-                    ? 'border-orange-500/30'
-                    : 'border-white/10 opacity-80'
-                }`}>
-                  {/* Content */}
-                  <div className="md:col-span-8 space-y-3">
-                    <div className="md:hidden flex items-center justify-between gap-2 mb-1">
-                      <span className={`font-serif text-sm font-bold ${isActive ? 'text-amber-300' : 'text-ivory/60'}`}>
-                        {item.yearText}
-                      </span>
-                      <span className="text-[10px] text-amber-300 uppercase tracking-wider bg-orange-500/10 px-2 py-0.5 rounded">
-                        {item.category}
-                      </span>
+                {/* Milestone Node Dot on the Rail */}
+                <div className="tl-dot animate-pulse-ring" />
+
+                {/* Milestone Card */}
+                <div className="card-paper p-6 md:p-7 grid md:grid-cols-[1fr_220px] gap-6 items-start">
+                  
+                  {/* Card Content Left */}
+                  <div className="flex flex-col justify-between space-y-3">
+                    <div>
+                      <div className="text-[10px] tracking-[0.2em] text-[#B8860B] uppercase font-semibold">
+                        {item.roleText}
+                      </div>
+
+                      <h3 className="mt-2 font-serif text-xl md:text-2xl text-[#1A2540] font-semibold group-hover:text-emerald transition-colors">
+                        {item.bodyText}
+                      </h3>
+
+                      <p className="mt-3 text-[#4A5568] leading-relaxed text-sm font-sans">
+                        {item.descText}
+                      </p>
                     </div>
 
-                    <span className="text-xs font-semibold uppercase tracking-wider text-orange-400 block">
-                      {item.roleText}
-                    </span>
-
-                    <h3 className="font-serif text-xl md:text-2xl font-bold text-ivory">
-                      {item.bodyText}
-                    </h3>
-
-                    <p className="text-sm text-ivory/80 leading-relaxed font-sans">
-                      {item.descText}
-                    </p>
-
-                    <div className="text-xs text-gold/80 italic flex items-center gap-1.5 pt-2">
-                      <Award className="w-3.5 h-3.5 text-gold shrink-0" />
-                      <span>{item.caption}</span>
+                    <div className="pt-2">
+                      <div className="my-2 h-px bg-gradient-to-r from-[#E7DEC9] via-[#D9CDAE] to-transparent" />
+                      <div className="flex items-center gap-1.5 text-xs text-[#0F4A3C] font-medium italic">
+                        <Award className="w-3.5 h-3.5 text-[#B8860B] shrink-0" />
+                        <span>{item.caption}</span>
+                      </div>
                     </div>
                   </div>
 
                   {/* Archival Milestone Image */}
-                  <div className="md:col-span-4">
-                    <div className="relative w-full h-48 rounded overflow-hidden border border-gold/30 bg-charcoal-deep shadow-md">
-                      <Image
-                        src={item.image}
-                        alt={item.caption}
-                        fill
-                        className="object-cover group-hover:scale-105 transition-transform duration-700"
-                        sizes="(max-width: 768px) 100vw, 300px"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-charcoal-deep/60 via-transparent to-transparent opacity-60" />
-                    </div>
+                  <div className="relative w-full h-40 sm:h-44 rounded-xl overflow-hidden border border-[#E7DEC9] bg-[#FAF5EB] shadow-xs">
+                    <Image
+                      src={item.image}
+                      alt={item.caption}
+                      fill
+                      className="object-cover group-hover:scale-105 transition-transform duration-700"
+                      sizes="(max-width: 768px) 100vw, 220px"
+                    />
                   </div>
+
                 </div>
               </div>
-            );
-          })}
+            ))}
+          </div>
+
         </div>
       </div>
     </section>

@@ -103,11 +103,11 @@ export const LegacyPreview: React.FC = () => {
   }, [lenis]);
 
   return (
-    <section id="lineage" className="py-20 bg-ivory text-charcoal relative overflow-hidden">
+    <section id="lineage" className="py-24 bg-[#FAF5EB] text-ink relative overflow-hidden">
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
         <SectionHeading
           eyebrow="Family Legacy"
-          title="Ancestral Roots & Territorial Heritage"
+          title={<span>Ancestral Roots & <span className="text-emerald italic font-normal">Territorial Heritage</span></span>}
           subtitle="A vertical editorial preview of the generational leadership rooted in the soil of Silvassa."
         />
 
@@ -123,17 +123,17 @@ export const LegacyPreview: React.FC = () => {
             }}
           >
             {/* Background Track Line */}
-            <div className="w-full h-full bg-sandstone-dark/50 rounded-full" />
+            <div className="w-full h-full bg-[#E7DEC9] rounded-full" />
 
             {/* Dynamic Progress Fill Line with Integrated Head Orb */}
             <div
-              className="absolute top-0 left-0 w-full bg-gradient-to-b from-terracotta via-terracotta-light to-gold rounded-full shadow-[0_0_12px_#B8533C]"
+              className="absolute top-0 left-0 w-full bg-gradient-to-b from-emerald-2 via-emerald to-emerald rounded-full shadow-sm"
               style={{
                 height: `${lineMeta.fillHeight}px`,
               }}
             >
               {lineMeta.fillHeight > 5 && lineMeta.fillHeight < lineMeta.height - 5 && (
-                <div className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 w-4 h-4 bg-gold rounded-full shadow-[0_0_16px_#C5A059,0_0_25px_#B8533C] ring-4 ring-terracotta/50 animate-pulse z-20" />
+                <div className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 w-4 h-4 bg-gold rounded-full shadow-sm ring-4 ring-emerald/20 animate-pulse z-20" />
               )}
             </div>
           </div>
@@ -149,43 +149,43 @@ export const LegacyPreview: React.FC = () => {
                 <div
                   className={`legacy-node-dot absolute left-4 md:left-6 -translate-x-1/2 top-6 -translate-y-1/2 w-7 h-7 rounded-full flex items-center justify-center transition-all duration-300 z-10 ${
                     isCurrentFocus
-                      ? 'bg-terracotta ring-8 ring-terracotta/30 shadow-[0_0_25px_#B8533C] scale-125'
+                      ? 'bg-emerald ring-8 ring-emerald/20 shadow-md scale-125'
                       : isActive
-                      ? 'bg-gold ring-4 ring-gold/30 shadow-[0_0_12px_rgba(197,160,89,0.7)]'
-                      : 'bg-white border-2 border-gold/40'
+                      ? 'bg-emerald ring-4 ring-emerald/15 shadow-sm'
+                      : 'bg-white border-2 border-gold-2/40'
                   }`}
                 >
                   <div
                     className={`w-2.5 h-2.5 rounded-full transition-colors ${
-                      isActive ? 'bg-charcoal-dark' : 'bg-gold/40'
+                      isActive ? 'bg-[#FAF5EB]' : 'bg-gold-2/40'
                     }`}
                   />
                 </div>
 
-                <div className={`bg-white p-6 md:p-8 rounded-lg border transition-all duration-300 shadow-sm ${
+                <div className={`card-paper p-6 md:p-8 ${
                   isCurrentFocus
-                    ? 'border-gold/60 ring-1 ring-gold/30 shadow-md'
-                    : 'border-sandstone'
+                    ? 'border-gold-2 ring-1 ring-gold/20 shadow-paper-hover'
+                    : 'border-[#E7DEC9]'
                 }`}>
                   <div className="flex flex-wrap items-center justify-between gap-2 mb-3">
-                    <span className="text-xs font-bold uppercase tracking-wider text-terracotta px-2.5 py-0.5 rounded bg-terracotta/10">
+                    <span className="text-xs font-bold uppercase tracking-wider text-emerald px-2.5 py-0.5 rounded bg-emerald/10">
                       {item.era}
                     </span>
-                    <span className="text-xs font-serif italic text-gold-dark font-medium">
+                    <span className="text-xs font-serif italic text-gold font-medium">
                       {item.year}
                     </span>
                   </div>
                   
                   <div className="grid grid-cols-1 md:grid-cols-12 gap-6 items-center">
                     <div className={item.hasHeritageImage ? "md:col-span-8" : "md:col-span-12"}>
-                      <h3 className="font-serif text-xl font-bold text-charcoal-dark mb-2">
+                      <h3 className="font-serif text-xl font-bold text-ink mb-2">
                         {item.title}
                       </h3>
-                      <p className="text-sm text-charcoal/70 leading-relaxed font-sans mb-3">
+                      <p className="text-sm text-slate-body leading-relaxed font-sans mb-3">
                         {item.desc}
                       </p>
                       {item.hasHeritageImage && (
-                        <div className="inline-flex items-center gap-1.5 text-xs text-terracotta font-medium italic pt-1">
+                        <div className="inline-flex items-center gap-1.5 text-xs text-emerald font-medium italic pt-1">
                           <Landmark className="w-3.5 h-3.5" />
                           <span>{silwasaPlaces.heritage.title} · {silwasaPlaces.heritage.location}</span>
                         </div>
@@ -194,7 +194,7 @@ export const LegacyPreview: React.FC = () => {
 
                     {item.hasHeritageImage && (
                       <div className="md:col-span-4">
-                        <div className="relative w-full h-44 rounded-lg overflow-hidden border border-sandstone shadow-sm bg-sandstone/20">
+                        <div className="relative w-full h-44 rounded-xl overflow-hidden border border-[#E7DEC9] shadow-xs bg-[#FAF5EB]">
                           <Image
                             src={silwasaPlaces.heritage.src}
                             alt={silwasaPlaces.heritage.alt}
@@ -213,18 +213,18 @@ export const LegacyPreview: React.FC = () => {
           })}
         </div>
 
-        {/* Disabled Future State Action Control */}
+        {/* Action Control */}
         <div className="text-center pt-6">
           <div className="inline-flex flex-col items-center gap-2">
             <Button
               variant="outline"
               disabled
-              icon={<Lock className="w-4 h-4 text-gold-muted" />}
+              icon={<Lock className="w-4 h-4 text-gold" />}
               className="px-8 py-3 opacity-60 cursor-not-allowed"
             >
               Explore Full Legacy Archive
             </Button>
-            <span className="text-xs text-charcoal/50 italic flex items-center gap-1">
+            <span className="text-xs text-slate-muted italic flex items-center gap-1">
               <History className="w-3.5 h-3.5" /> Complete Legacy page reserved for future phase
             </span>
           </div>

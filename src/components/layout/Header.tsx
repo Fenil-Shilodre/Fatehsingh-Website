@@ -33,13 +33,13 @@ export const Header: React.FC = () => {
         transition={{ duration: 0.7, ease: "easeOut" }}
         className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${
           isScrolled
-            ? 'bg-[#080A10]/95 backdrop-blur-lg shadow-xl shadow-black/40 py-3 border-b border-orange-500/20'
-            : 'bg-gradient-to-b from-[#080A10]/95 via-[#080A10]/70 to-transparent py-4 sm:py-5'
+            ? 'bg-[#0F1B33]/95 backdrop-blur-lg shadow-xl shadow-black/40 py-3 border-b border-gold/20'
+            : 'bg-gradient-to-b from-[#0F1B33]/95 via-[#0F1B33]/70 to-transparent py-4 sm:py-5'
         }`}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
           
-          {/* Desktop Left Nav Items (Non-redirecting Design Navigation) */}
+          {/* Desktop Left Nav Items */}
           <nav className="hidden lg:flex items-center space-x-1 xl:space-x-4 flex-1 justify-start">
             {leftNavItems.map((item, idx) => {
               const isActive = item.id === 'home';
@@ -55,8 +55,8 @@ export const Header: React.FC = () => {
                   whileHover={{ y: -2 }}
                   className={`group relative py-1.5 px-2.5 text-xs xl:text-sm font-medium tracking-wide transition-colors duration-200 cursor-default select-none focus:outline-none ${
                     isActive
-                      ? 'text-amber-300 font-semibold'
-                      : 'text-ivory/75 hover:text-amber-300'
+                      ? 'text-gold-3 font-semibold'
+                      : 'text-ivory/80 hover:text-gold-3'
                   }`}
                 >
                   <span className="relative">
@@ -65,8 +65,8 @@ export const Header: React.FC = () => {
                     <span 
                       className={`absolute -bottom-1 left-0 right-0 h-0.5 rounded-full transition-all duration-300 ${
                         isActive 
-                          ? 'bg-gradient-to-r from-orange-500 to-amber-400 shadow-[0_0_8px_#EA580C]' 
-                          : 'bg-gradient-to-r from-orange-500 to-amber-400 w-0 group-hover:w-full'
+                          ? 'bg-gradient-to-r from-emerald via-gold to-gold-3 shadow-[0_0_8px_#B8860B]' 
+                          : 'bg-gradient-to-r from-emerald via-gold to-gold-3 w-0 group-hover:w-full'
                       }`} 
                     />
                   </span>
@@ -85,24 +85,24 @@ export const Header: React.FC = () => {
             aria-label="Fatehsinh Chauhan"
           >
             {/* Subtle Ambient Backlight Glow on Hover */}
-            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-orange-500/15 to-transparent rounded-full blur-md opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-gold/15 to-transparent rounded-full blur-md opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
 
             {/* Brand Title with Shimmer Sheen & Flanking Micro-Gems */}
             <div className="flex items-center gap-2 relative z-10">
-              <span className="hidden sm:inline-block w-1.5 h-1.5 rotate-45 bg-amber-400 shadow-[0_0_8px_#F59E0B] opacity-60 group-hover:opacity-100 group-hover:scale-125 transition-all duration-300" />
+              <span className="hidden sm:inline-block w-1.5 h-1.5 rotate-45 bg-gold shadow-[0_0_8px_#B8860B] opacity-70 group-hover:opacity-100 group-hover:scale-125 transition-all duration-300" />
               
               <span className="font-serif font-bold text-base sm:text-lg xl:text-xl tracking-wider group-hover:tracking-[0.14em] brand-shimmer-text transition-all duration-300">
                 FATEHSINH CHAUHAN
               </span>
 
-              <span className="hidden sm:inline-block w-1.5 h-1.5 rotate-45 bg-amber-400 shadow-[0_0_8px_#F59E0B] opacity-60 group-hover:opacity-100 group-hover:scale-125 transition-all duration-300" />
+              <span className="hidden sm:inline-block w-1.5 h-1.5 rotate-45 bg-gold shadow-[0_0_8px_#B8860B] opacity-70 group-hover:opacity-100 group-hover:scale-125 transition-all duration-300" />
             </div>
 
             {/* Delicate Expanding Underline Glow */}
-            <span className="block h-[1.5px] bg-gradient-to-r from-transparent via-amber-400 to-transparent w-8 group-hover:w-full transition-all duration-500 mx-auto mt-0.5 opacity-70 group-hover:opacity-100 shadow-[0_0_6px_#F59E0B]" />
+            <span className="block h-[1.5px] bg-gradient-to-r from-transparent via-gold to-transparent w-8 group-hover:w-full transition-all duration-500 mx-auto mt-0.5 opacity-70 group-hover:opacity-100 shadow-[0_0_6px_#B8860B]" />
           </motion.div>
 
-          {/* Desktop Right Nav Items (Non-redirecting Design Navigation) */}
+          {/* Desktop Right Nav Items */}
           <nav className="hidden lg:flex items-center space-x-1 xl:space-x-4 flex-1 justify-end">
             {rightNavItems.map((item, idx) => {
               const isActive = false;
@@ -118,14 +118,14 @@ export const Header: React.FC = () => {
                   whileHover={{ y: -2 }}
                   className={`group relative py-1.5 px-2.5 text-xs xl:text-sm font-medium tracking-wide transition-colors duration-200 cursor-default select-none focus:outline-none ${
                     isActive
-                      ? 'text-amber-300 font-semibold'
-                      : 'text-ivory/75 hover:text-amber-300'
+                      ? 'text-gold-3 font-semibold'
+                      : 'text-ivory/80 hover:text-gold-3'
                   }`}
                 >
                   <span className="relative">
                     {t(item.labelKey as any, item.defaultLabel)}
                     {/* Animated Underline on Hover */}
-                    <span className="absolute -bottom-1 left-0 right-0 h-0.5 bg-gradient-to-r from-orange-500 to-amber-400 rounded-full w-0 group-hover:w-full transition-all duration-300" />
+                    <span className="absolute -bottom-1 left-0 right-0 h-0.5 bg-gradient-to-r from-emerald via-gold to-gold-3 rounded-full w-0 group-hover:w-full transition-all duration-300" />
                   </span>
                 </motion.button>
               );
@@ -137,7 +137,7 @@ export const Header: React.FC = () => {
             <motion.button
               whileTap={{ scale: 0.9 }}
               onClick={() => setMobileMenuOpen(true)}
-              className="p-2 text-ivory/90 hover:text-amber-400 focus:outline-none transition-colors"
+              className="p-2 text-ivory/90 hover:text-gold-3 focus:outline-none transition-colors"
               aria-label="Toggle navigation menu"
             >
               <Menu className="w-6 h-6" />
