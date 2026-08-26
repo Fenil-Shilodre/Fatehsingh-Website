@@ -59,7 +59,7 @@
   }
 
   body {
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-family: 'Plus Jakarta Sans', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
     overflow-x: hidden;
     background-color: var(--ivory);
     color: var(--ink);
@@ -67,25 +67,25 @@
 
   /* Multi-language font bindings */
   :lang(gu) {
-    font-family: 'Noto Sans Gujarati', 'Inter', sans-serif;
+    font-family: 'Noto Sans Gujarati', 'Plus Jakarta Sans', 'Inter', sans-serif;
   }
 
   :lang(gu) h1,
   :lang(gu) h2,
   :lang(gu) h3,
   :lang(gu) .font-serif {
-    font-family: 'Noto Serif Gujarati', 'Cormorant Garamond', serif;
+    font-family: 'Noto Serif Gujarati', 'Playfair Display', serif;
   }
 
   :lang(hi) {
-    font-family: 'Noto Sans Devanagari', 'Inter', sans-serif;
+    font-family: 'Noto Sans Devanagari', 'Plus Jakarta Sans', 'Inter', sans-serif;
   }
 
   :lang(hi) h1,
   :lang(hi) h2,
   :lang(hi) h3,
   :lang(hi) .font-serif {
-    font-family: 'Noto Serif Devanagari', 'Cormorant Garamond', serif;
+    font-family: 'Noto Serif Devanagari', 'Playfair Display', serif;
   }
 }
 
