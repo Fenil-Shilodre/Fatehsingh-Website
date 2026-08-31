@@ -27,21 +27,20 @@ export const Hero: React.FC = () => {
   };
 
   return (
-    <section id="home" className="relative min-h-[90vh] lg:min-h-screen flex flex-col justify-end items-center pt-28 pb-16 sm:pb-24 bg-[#0F1B33] overflow-hidden text-[#FAF5EB] text-center">
-      {/* 1. Full-Bleed Background Image with Royal Emerald & Midnight Depth */}
-      <div className="absolute inset-0 z-0">
+    <section id="home" className="relative min-h-[92vh] lg:min-h-screen flex flex-col justify-end items-center pt-24 pb-14 sm:pb-20 bg-[#605A2B] overflow-hidden text-[#FAF5EB] text-center">
+      {/* 1. Full-Bleed Background Image with Headroom below Navbar */}
+      <div className="absolute inset-0 top-[65px] sm:top-[72px] z-0">
         <Image
-          src="/images/hero-speech.jpg"
+          src="/images/hero-fatehsingh.png"
           alt="Shri Fatehsinh Mohansinh Chauhan"
           fill
           priority
-          className="object-cover object-[center_18%] md:object-[center_12%] filter brightness-100 contrast-100"
+          className="object-cover object-top filter brightness-100 contrast-[1.02]"
           sizes="100vw"
         />
 
-        {/* Cinematic Gradient Overlays with Emerald & Gold Ambient Depth */}
-        <div className="absolute inset-0 bg-gradient-to-t from-[#0F1B33] via-[#0F1B33]/70 via-35% to-transparent" />
-        <div className="absolute top-0 inset-x-0 h-28 bg-gradient-to-b from-[#0F1B33]/60 to-transparent" />
+        {/* Cinematic Gradient Overlays: Deep midnight at bottom for text readability, subtle warm tone at top */}
+        <div className="absolute inset-0 bg-gradient-to-t from-[#0F1B33] via-[#0F1B33]/75 via-45% to-transparent" />
         <div className="absolute bottom-1/4 left-1/2 -translate-x-1/2 w-[600px] h-40 bg-[#0F4A3C]/20 rounded-full blur-[120px] pointer-events-none" />
         <div className="absolute bottom-1/3 right-1/4 w-[400px] h-32 bg-[#B8860B]/15 rounded-full blur-[100px] pointer-events-none" />
       </div>
