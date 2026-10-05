@@ -18,16 +18,28 @@ export const Philosophy: React.FC = () => {
         />
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-stretch">
-          {/* Lead Quote Card */}
-          <div className="lg:col-span-6 bg-gradient-to-br from-[#E07A2A] via-[#D46A1C] to-[#B8520B] rounded-2xl shadow-sm p-8 md:p-12 flex flex-col justify-between relative overflow-hidden border-l-[6px] border-l-[#FBF4E6]">
-            <Quote className="w-20 h-20 text-[#FBF4E6]/15 absolute -top-3 -left-3 pointer-events-none" />
+          {/* Lead Quote Card with Hero Gradient Effect */}
+          <div className="lg:col-span-6 rounded-2xl shadow-xl p-8 md:p-12 flex flex-col justify-between relative overflow-hidden border-l-[6px] border-l-[#FFE8A8] border border-[#C69749]/30 text-[#FBF4E6] bg-[#3B1208]">
+            {/* Hero Background Watercolor Layer */}
+            <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
+              <Image
+                src="/images/hero-bg.jpg"
+                alt="Hero Atmospheric Background"
+                fill
+                className="object-cover object-center filter brightness-[0.82] contrast-[1.08]"
+                sizes="(max-width: 1024px) 100vw, 50vw"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/25 to-black/15" />
+            </div>
+
+            <Quote className="w-20 h-20 text-[#FFE8A8]/20 absolute -top-3 -left-3 pointer-events-none z-10" />
             
-            <blockquote className="font-serif text-2xl sm:text-3xl font-medium text-[#FBF4E6] leading-relaxed relative z-10 italic mb-8">
+            <blockquote className="font-serif text-2xl sm:text-3xl font-medium text-[#FAF5EB] leading-relaxed relative z-10 italic mb-8 drop-shadow-md">
               &ldquo;{t('man_lead_quote')}&rdquo;
             </blockquote>
 
-            <div className="flex items-center gap-4 pt-6 border-t border-[#FBF4E6]/20">
-              <div className="relative w-14 h-14 rounded-full overflow-hidden border-2 border-[#FBF4E6] shrink-0 shadow-sm">
+            <div className="flex items-center gap-4 pt-6 border-t border-white/20 relative z-10">
+              <div className="relative w-14 h-14 rounded-full overflow-hidden border-2 border-[#FFE8A8] shrink-0 shadow-md">
                 <Image
                   src="/images/48.jpg"
                   alt="Fatehsinh Chauhan"

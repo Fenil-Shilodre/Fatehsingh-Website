@@ -142,14 +142,26 @@ export function ActionPanels() {
       </div>
 
       {/* QUOTE SECTION */}
-      <div ref={quoteRef} className="w-full bg-gradient-to-br from-[#E07A2A] via-[#D46A1C] to-[#B8520B] text-[#FBF4E6] py-24 sm:py-32 px-6 sm:px-14 md:px-20 border-t border-[#FBF4E6]/20 relative overflow-hidden group mt-32">
+      <div ref={quoteRef} className="w-full relative text-[#FBF4E6] py-24 sm:py-32 px-6 sm:px-14 md:px-20 border-t border-[#FBF4E6]/20 overflow-hidden group mt-32 bg-[#2D0B05]">
+        {/* Hero Background Watercolor Layer */}
+        <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
+          <Image
+            src="/images/hero-bg.jpg"
+            alt="Hero Atmosphere"
+            fill
+            className="object-cover object-center filter brightness-[0.72] contrast-[1.12]"
+            sizes="100vw"
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-black/55 via-[#3B1208]/45 to-black/75" />
+        </div>
+
         {/* Background Illustration */}
         <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden select-none flex items-center justify-center">
           <motion.img
             style={{ y: bgY }}
             src="/images/heads-held-high-transparent.png"
             alt="Integrity & Upright Stance - Heads Held High"
-            className="w-full max-w-3xl lg:max-w-4xl h-auto object-contain opacity-25 sm:opacity-30"
+            className="w-full max-w-3xl lg:max-w-4xl h-auto object-contain opacity-35 sm:opacity-40 drop-shadow-[0_0_15px_rgba(255,232,168,0.4)]"
           />
         </div>
 
