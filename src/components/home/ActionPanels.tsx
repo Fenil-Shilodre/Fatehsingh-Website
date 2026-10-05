@@ -144,14 +144,13 @@ export function ActionPanels() {
       {/* QUOTE SECTION */}
       <div ref={quoteRef} className="w-full bg-gradient-to-br from-[#E07A2A] via-[#D46A1C] to-[#B8520B] text-[#FBF4E6] py-24 sm:py-32 px-6 sm:px-14 md:px-20 border-t border-[#FBF4E6]/20 relative overflow-hidden group mt-32">
         {/* Background Illustration */}
-        <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden select-none">
+        <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden select-none flex items-center justify-center">
           <motion.img
             style={{ y: bgY }}
-            src="/images/quote-bg-new.jpg"
-            alt="Integrity & Upright Stance Illustration"
-            className="w-full h-[140%] object-cover object-center opacity-30 mix-blend-multiply"
+            src="/images/heads-held-high-transparent.png"
+            alt="Integrity & Upright Stance - Heads Held High"
+            className="w-full max-w-3xl lg:max-w-4xl h-auto object-contain opacity-25 sm:opacity-30"
           />
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(224,122,42,0.85)_0%,rgba(184,82,11,0.95)_100%)]" />
         </div>
 
         <div className="max-w-4xl mx-auto text-center space-y-8 relative z-10">
