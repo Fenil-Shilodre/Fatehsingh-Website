@@ -70,10 +70,9 @@ export const Hero: React.FC = () => {
           {/* Main Headline */}
           <motion.h1 
             variants={itemVariants} 
-            className="font-serif text-2xl sm:text-3xl md:text-4xl lg:text-[2.75rem] xl:text-[3rem] font-bold uppercase tracking-tight text-[#FAF5EB] leading-[1.18] drop-shadow-[0_4px_16px_rgba(0,0,0,0.95)]"
+            className="font-serif text-3xl sm:text-4xl md:text-5xl lg:text-[3.25rem] xl:text-[3.75rem] font-bold tracking-tight text-[#FAF5EB] leading-[1.12] drop-shadow-[0_4px_16px_rgba(0,0,0,0.95)]"
           >
-            <span className="block">FATEHSINH’S VISION.</span>
-            <span className="block">DADRA &amp; NAGAR HAVELI’S FUTURE.</span>
+            Fatehsinh Mohansinh Chauhan
           </motion.h1>
 
           {/* Subtitle / Tagline */}
