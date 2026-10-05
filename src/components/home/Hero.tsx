@@ -76,12 +76,12 @@ export const Hero: React.FC = () => {
           </motion.h1>
 
           {/* Subtitle / Tagline */}
-          <motion.p 
+          <motion.h2 
             variants={itemVariants}
-            className="font-sans text-[11px] sm:text-xs md:text-sm font-semibold tracking-[0.22em] sm:tracking-[0.25em] uppercase text-[#E4C77A] drop-shadow-[0_2px_8px_rgba(0,0,0,0.95)] mt-2"
+            className="font-serif text-lg sm:text-xl md:text-2xl font-medium italic text-white drop-shadow-[0_2px_10px_rgba(0,0,0,0.95)] mt-1.5"
           >
-            A LIFETIME OF DEDICATED PUBLIC SERVICE.
-          </motion.p>
+            A life devoted to opening doors
+          </motion.h2>
 
           {/* 2 CTA Buttons */}
           <motion.div 
