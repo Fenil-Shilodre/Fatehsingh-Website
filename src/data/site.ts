@@ -8,12 +8,12 @@ export interface NavItem {
 }
 
 export const navItems: NavItem[] = [
-  { id: "biography", labelKey: "nav_biography", defaultLabel: "Biography", href: "#biography", isActive: true, isDisabled: false },
-  { id: "institutions", labelKey: "nav_institutions", defaultLabel: "Institutions", href: "#institutions", isActive: false, isDisabled: false },
-  { id: "business", labelKey: "nav_business", defaultLabel: "Business", href: "#business", isActive: false, isDisabled: false },
-  { id: "public-life", labelKey: "nav_public_life", defaultLabel: "Public Life", href: "#public-life", isActive: false, isDisabled: false },
-  { id: "news", labelKey: "nav_news", defaultLabel: "News & Articles", href: "#news", isActive: false, isDisabled: false },
-  { id: "blogs", labelKey: "nav_blogs", defaultLabel: "Blogs", href: "#blogs", isActive: false, isDisabled: false }
+  { id: "biography", labelKey: "nav_biography", defaultLabel: "BIOGRAPHY", href: "#biography", isActive: true, isDisabled: false },
+  { id: "institutions", labelKey: "nav_institutions", defaultLabel: "INSTITUTIONS", href: "#institutions", isActive: false, isDisabled: false },
+  { id: "business", labelKey: "nav_business", defaultLabel: "BUSINESS", href: "#business", isActive: false, isDisabled: false },
+  { id: "public-life", labelKey: "nav_public_life", defaultLabel: "PUBLIC LIFE", href: "#public-life", isActive: false, isDisabled: false },
+  { id: "news", labelKey: "nav_news", defaultLabel: "NEWS & ARTICLES", href: "#news", isActive: false, isDisabled: false },
+  { id: "blogs", labelKey: "nav_blogs", defaultLabel: "BLOGS", href: "#blogs", isActive: false, isDisabled: false }
 ];
 
 export const siteConfig = {

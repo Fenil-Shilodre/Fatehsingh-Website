@@ -121,12 +121,12 @@ export type TranslationKey =
 
 export const translations: Record<Language, Record<TranslationKey, string>> = {
   en: {
-    nav_biography: "Biography",
-    nav_institutions: "Institutions",
-    nav_business: "Business",
-    nav_public_life: "Public Life",
-    nav_news: "News & Articles",
-    nav_blogs: "Blogs",
+    nav_biography: "BIOGRAPHY",
+    nav_institutions: "INSTITUTIONS",
+    nav_business: "BUSINESS",
+    nav_public_life: "PUBLIC LIFE",
+    nav_news: "NEWS & ARTICLES",
+    nav_blogs: "BLOGS",
     brand_tagline: "Silvassa · Dadra & Nagar Haveli",
 
     hero_eyebrow: "Born in Silvassa · Servant of Dadra & Nagar Haveli",

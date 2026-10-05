@@ -65,18 +65,18 @@ export const Header: React.FC = () => {
         onClick={(e) => {
           e.preventDefault();
         }}
-        className="group relative py-1 px-1.5 capitalize whitespace-nowrap cursor-pointer select-none focus:outline-none"
+        className="group relative py-1 px-1.5 uppercase whitespace-nowrap cursor-pointer select-none focus:outline-none"
       >
         <span className="relative inline-block pb-1">
           {/* Text: Pure text shiny gold hover effect with zero background box */}
-          <span className={`text-[13px] xl:text-sm 2xl:text-[15px] tracking-wide transition-all duration-300 ${
+          <span className={`text-[12px] xl:text-[13px] 2xl:text-sm font-semibold tracking-[0.06em] xl:tracking-[0.08em] transition-all duration-300 ${
             isScrolled
               ? isActive
                 ? 'text-[#B8860B] font-bold'
-                : 'text-[#3B4763] font-medium group-hover:text-[#C69749] group-hover:drop-shadow-[0_0_8px_rgba(198,151,73,0.7)]'
+                : 'text-[#3B4763] font-semibold group-hover:text-[#C69749] group-hover:drop-shadow-[0_0_8px_rgba(198,151,73,0.7)]'
               : isActive
                 ? 'text-[#FFE8A8] font-bold drop-shadow-[0_2px_6px_rgba(0,0,0,0.85)]'
-                : 'text-white/90 font-medium drop-shadow-[0_1px_4px_rgba(0,0,0,0.8)] group-hover:text-[#FFE8A8] group-hover:drop-shadow-[0_0_10px_rgba(255,232,168,0.85)]'
+                : 'text-white/90 font-semibold drop-shadow-[0_1px_4px_rgba(0,0,0,0.8)] group-hover:text-[#FFE8A8] group-hover:drop-shadow-[0_0_10px_rgba(255,232,168,0.85)]'
           }`}>
             {t(item.labelKey || item.label as any, item.defaultLabel || item.label)}
           </span>
