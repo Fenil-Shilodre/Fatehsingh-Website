@@ -11,8 +11,17 @@ export const InstitutionsPreview: React.FC = () => {
   const { t } = useLanguage();
 
   return (
-    <section id="institutions" className="py-24 bg-[#F3EBD7] text-ink relative">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="institutions" className="py-24 bg-[#F3EBD7] text-ink relative overflow-hidden">
+      {/* Background Mural Illustration on Right Side (100% Seamless Organic Blend with Zero Edge) */}
+      <div className="absolute top-0 right-0 w-full sm:w-[85%] lg:w-[68%] xl:w-[60%] h-[520px] sm:h-[650px] lg:h-[750px] pointer-events-none select-none z-0 overflow-hidden [mask-image:radial-gradient(ellipse_90%_80%_at_78%_25%,black_35%,transparent_90%)] [-webkit-mask-image:radial-gradient(ellipse_90%_80%_at_78%_25%,black_35%,transparent_90%)]">
+        <img
+          src="/images/institutions-illustration-transparent.png"
+          alt="Educational Institutions and Learning Illustration Mural"
+          className="w-full h-full object-contain object-right-top opacity-20 sm:opacity-30 filter contrast-[1.05] translate-x-2 sm:translate-x-6"
+        />
+      </div>
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <SectionHeading
           eyebrow={t('inst_eyebrow')}
           title={<span>Building Silvassa&apos;s <span className="text-emerald italic font-normal">Educational Future</span></span>}

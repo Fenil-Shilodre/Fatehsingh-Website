@@ -18,16 +18,28 @@ export function ActionPanels() {
   const bgY = useTransform(scrollYProgress, [0, 1], ["-20%", "20%"]);
 
   return (
-    <section ref={containerRef} id="enterprise" className="bg-ivory text-ink pt-24 sm:pt-32">
-      <div className="max-w-7xl mx-auto space-y-20 px-4 sm:px-6 lg:px-8">
+    <section ref={containerRef} id="enterprise" className="bg-ivory text-ink pt-24 sm:pt-32 relative overflow-hidden">
+      {/* Background Mural Illustration on Right Side (100% Seamless Organic Blend with Zero Edge) */}
+      <div className="absolute top-0 right-0 w-full sm:w-[85%] lg:w-[68%] xl:w-[60%] h-[560px] sm:h-[720px] lg:h-[840px] pointer-events-none select-none z-0 overflow-hidden [mask-image:radial-gradient(ellipse_90%_80%_at_78%_25%,black_35%,transparent_90%)] [-webkit-mask-image:radial-gradient(ellipse_90%_80%_at_78%_25%,black_35%,transparent_90%)]">
+        <img
+          src="/images/civic-illustration-transparent.png"
+          alt="Civic Stewardship and Governance Illustration Mural"
+          className="w-full h-full object-contain object-right-top opacity-20 sm:opacity-30 filter contrast-[1.05] translate-x-2 sm:translate-x-6"
+        />
+      </div>
+
+      <div className="max-w-7xl mx-auto space-y-20 px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Section Header */}
         <motion.div 
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
-          className="max-w-3xl space-y-6"
+          className="max-w-3xl space-y-4"
         >
+          <span className="text-[11px] sm:text-xs uppercase tracking-[0.25em] font-semibold text-[#B8860B]">
+            Enterprise &amp; Public Stewardship
+          </span>
           <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold text-ink leading-tight">
             Connect enterprise with public responsibility
           </h2>

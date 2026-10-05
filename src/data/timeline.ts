@@ -195,7 +195,7 @@ export const timelineData: TimelineItem[] = [
     "roleText": "MILESTONE",
     "bodyText": "Honorary doctorate",
     "descText": "Fatehsinh was conferred by Langbustech University, New Jersey, USA, in appreciation of his work.",
-    "image": "/images/fatehsinh-premium.jpg",
+    "image": "/images/hero-photo.png",
     "caption": "Conferred Honorary Doctorate"
   }
 ];

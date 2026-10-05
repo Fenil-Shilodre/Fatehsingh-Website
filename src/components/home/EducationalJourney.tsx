@@ -135,12 +135,23 @@ export function EducationalJourney({ onOpenStory }: EducationalJourneyProps) {
   ];
 
   return (
-    <section ref={containerRef} id="journey" className="journey-background relative text-[#1E1B18] pt-24 border-b border-[#E8E0D2]">
-      <div className="relative max-w-7xl mx-auto space-y-24 z-10 px-6 md:px-12 lg:px-16">
+    <section ref={containerRef} id="journey" className="journey-background relative text-[#1E1B18] pt-24 pb-12 border-b border-[#E8E0D2] overflow-hidden">
+      {/* Background Mural Illustration on Right Side (100% Seamless Organic Blend with Zero Edge) */}
+      <div className="absolute top-0 right-0 w-full sm:w-[85%] lg:w-[68%] xl:w-[60%] h-[560px] sm:h-[720px] lg:h-[840px] pointer-events-none select-none z-0 overflow-hidden [mask-image:radial-gradient(ellipse_90%_80%_at_78%_25%,black_35%,transparent_90%)] [-webkit-mask-image:radial-gradient(ellipse_90%_80%_at_78%_25%,black_35%,transparent_90%)]">
+        <img
+          src="/images/journey-illustration-transparent.png"
+          alt="Naroli to Mumbai Journey Illustration Mural"
+          className="w-full h-full object-contain object-right-top opacity-20 sm:opacity-30 filter contrast-[1.05] translate-x-2 sm:translate-x-6"
+        />
+      </div>
+
+      <div className="relative max-w-7xl mx-auto space-y-20 lg:space-y-24 z-10 px-6 md:px-12 lg:px-16">
 
         {/* Section Header */}
-        <div className="section-header max-w-2xl space-y-3">
-
+        <div className="section-header max-w-2xl space-y-4">
+          <span className="text-[11px] sm:text-xs uppercase tracking-[0.25em] font-semibold text-[#E07A2A]">
+            Naroli to Mumbai · Educational Awakening
+          </span>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-serif text-[#3B1E40] font-normal leading-tight">
             Naroli to Mumbai and the gap back home
           </h2>
