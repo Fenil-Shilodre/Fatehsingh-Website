@@ -11,7 +11,7 @@ import { Award, Landmark, ScrollText, Star } from 'lucide-react';
 export const PublicServicePreview: React.FC = () => {
   const { t } = useLanguage();
   const { lenis } = useSmoothScroll();
-  const [selectedEra, setSelectedEra] = useState<'all' | '1980s' | '1990s' | '2000s'>('all');
+  const [selectedEra, setSelectedEra] = useState<string>('all');
   
   const trackRef = useRef<HTMLDivElement>(null);
   const fillRef = useRef<HTMLDivElement>(null);
@@ -96,6 +96,13 @@ export const PublicServicePreview: React.FC = () => {
             <span>All Milestones</span>
           </button>
           <button
+            onClick={() => setSelectedEra('1950s-1970s')}
+            className={`chip ${selectedEra === '1950s-1970s' ? 'active' : ''}`}
+          >
+            <Landmark className="w-4 h-4" />
+            <span>1950s-1970s: Early Life</span>
+          </button>
+          <button
             onClick={() => setSelectedEra('1980s')}
             className={`chip ${selectedEra === '1980s' ? 'active' : ''}`}
           >
@@ -110,8 +117,8 @@ export const PublicServicePreview: React.FC = () => {
             <span>1990s: Governance & Council</span>
           </button>
           <button
-            onClick={() => setSelectedEra('2000s')}
-            className={`chip ${selectedEra === '2000s' ? 'active' : ''}`}
+            onClick={() => setSelectedEra('2000s+')}
+            className={`chip ${selectedEra === '2000s+' ? 'active' : ''}`}
           >
             <Star className="w-4 h-4" />
             <span>2000s+: Institutional Leadership</span>
@@ -146,7 +153,7 @@ export const PublicServicePreview: React.FC = () => {
                 {/* Left Date / Decade Marker */}
                 <div className="absolute left-0 top-4 w-[76px] md:w-[110px] text-right">
                   <div className="font-serif text-[#0F4A3C] font-semibold italic text-base md:text-lg">
-                    {item.yearText}
+                    {item.yearText.split(' ').pop()}
                   </div>
                   <div className="text-[10px] tracking-widest text-[#B8860B] uppercase mt-0.5 font-semibold">
                     {item.era}
@@ -162,15 +169,11 @@ export const PublicServicePreview: React.FC = () => {
                   {/* Card Content Left */}
                   <div className="flex flex-col justify-between space-y-3">
                     <div>
-                      <div className="text-[10px] tracking-[0.2em] text-[#B8860B] uppercase font-semibold">
-                        {item.roleText}
-                      </div>
-
                       <h3 className="mt-2 font-serif text-xl md:text-2xl text-[#1A2540] font-semibold group-hover:text-emerald transition-colors">
                         {item.bodyText}
                       </h3>
 
-                      <p className="mt-3 text-[#4A5568] leading-relaxed text-sm font-sans">
+                      <p className="mt-3 text-[#4A5568] leading-relaxed text-[15px] md:text-base font-sans">
                         {item.descText}
                       </p>
                     </div>

@@ -1,14 +1,12 @@
 export type Language = 'en' | 'hi' | 'gu';
 
 export type TranslationKey = 
-  | 'nav_home'
-  | 'nav_lineage'
-  | 'nav_service'
+  | 'nav_biography'
   | 'nav_institutions'
-  | 'nav_haveli'
-  | 'nav_moments'
-  | 'nav_philosophy'
-  | 'nav_contact'
+  | 'nav_business'
+  | 'nav_public_life'
+  | 'nav_news'
+  | 'nav_blogs'
   | 'brand_tagline'
   | 'hero_eyebrow'
   | 'hero_title_prefix'
@@ -123,14 +121,12 @@ export type TranslationKey =
 
 export const translations: Record<Language, Record<TranslationKey, string>> = {
   en: {
-    nav_home: "Home",
-    nav_lineage: "Lineage",
-    nav_service: "Service",
+    nav_biography: "Biography",
     nav_institutions: "Institutions",
-    nav_haveli: "Haveli",
-    nav_moments: "Moments",
-    nav_philosophy: "Philosophy",
-    nav_contact: "Contact",
+    nav_business: "Business",
+    nav_public_life: "Public Life",
+    nav_news: "News & Articles",
+    nav_blogs: "Blogs",
     brand_tagline: "Silvassa · Dadra & Nagar Haveli",
 
     hero_eyebrow: "Born in Silvassa · Servant of Dadra & Nagar Haveli",
@@ -258,14 +254,12 @@ export const translations: Record<Language, Record<TranslationKey, string>> = {
   },
 
   hi: {
-    nav_home: "मुख्य",
-    nav_lineage: "वंशानुक्रम",
-    nav_service: "जनसेवा",
+    nav_biography: "जीवनी",
     nav_institutions: "संस्थान",
-    nav_haveli: "हवेली",
-    nav_moments: "स्मृतियां",
-    nav_philosophy: "दर्शन",
-    nav_contact: "संपर्क",
+    nav_business: "व्यवसाय",
+    nav_public_life: "सार्वजनिक जीवन",
+    nav_news: "समाचार और लेख",
+    nav_blogs: "ब्लॉग",
     brand_tagline: "सिलवासा · दादरा एवं नगर हवेली",
 
     hero_eyebrow: "सिलवासा की माटी में जन्मे · दादरा एवं नगर हवेली के अनवरत सेवक",
@@ -393,14 +387,12 @@ export const translations: Record<Language, Record<TranslationKey, string>> = {
   },
 
   gu: {
-    nav_home: "હોમ",
-    nav_lineage: "વારસો",
-    nav_service: "સેવા",
+    nav_biography: "જીવનચરિત્ર",
     nav_institutions: "સંસ્થાઓ",
-    nav_haveli: "હવેલી",
-    nav_moments: "ક્ષણો",
-    nav_philosophy: "વિચારધારા",
-    nav_contact: "સંપર્ક",
+    nav_business: "વ્યવસાય",
+    nav_public_life: "જાહેર જીવન",
+    nav_news: "સમાચાર અને લેખો",
+    nav_blogs: "બ્લોગ્સ",
     brand_tagline: "સેલવાસ · દાદરા અને નગર હવેલી",
 
     hero_eyebrow: "સેલવાસની ધરતીના સપૂત · દાદરા અને નગર હવેલીના સમર્પિત સેવક",

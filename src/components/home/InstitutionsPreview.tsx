@@ -22,7 +22,7 @@ export const InstitutionsPreview: React.FC = () => {
         {/* Campus Overview Banner */}
         <div className="card-paper overflow-hidden mb-12 grid grid-cols-1 lg:grid-cols-12 gap-8 p-6 md:p-8 relative">
           {/* Top royal gradient accent line */}
-          <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-[#0F4A3C] via-[#B8860B] to-[#0F4A3C]" />
+          <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-[#4A0E4E] via-[#B8860B] to-[#4A0E4E]" />
 
           <div className="lg:col-span-8 space-y-4 pt-2">
             <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-gold">

@@ -67,7 +67,7 @@ export const Introduction: React.FC = () => {
                 </h3>
 
                 {/* Subtitle Accent */}
-                <div className="mt-1 text-[#0F4A3C] text-sm italic font-medium">
+                <div className="mt-1 text-[#4A0E4E] text-sm italic font-medium">
                   {card.subtitle}
                 </div>
 

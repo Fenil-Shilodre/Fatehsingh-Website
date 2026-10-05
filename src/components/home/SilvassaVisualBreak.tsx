@@ -28,7 +28,7 @@ export const SilvassaVisualBreak: React.FC = () => {
 
       {/* Subtle Gradient Overlays */}
       <div className="absolute inset-0 bg-gradient-to-t from-[#0F1B33] via-[#0F1B33]/30 to-[#0F1B33]/60 pointer-events-none" />
-      <div className="absolute inset-0 bg-[#0F4A3C]/20 pointer-events-none" />
+      <div className="absolute inset-0 bg-[#4A0E4E]/20 pointer-events-none" />
 
       {/* Minimal Editorial Location Label */}
       <div className="absolute inset-0 flex flex-col items-center justify-center text-center p-6 z-10">

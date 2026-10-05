@@ -19,15 +19,15 @@ export const Philosophy: React.FC = () => {
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-stretch">
           {/* Lead Quote Card */}
-          <div className="lg:col-span-6 card-paper p-8 md:p-12 flex flex-col justify-between relative overflow-hidden border-l-4 border-l-emerald">
-            <Quote className="w-20 h-20 text-gold/15 absolute -top-3 -left-3 pointer-events-none" />
+          <div className="lg:col-span-6 bg-gradient-to-br from-[#E07A2A] via-[#D46A1C] to-[#B8520B] rounded-2xl shadow-sm p-8 md:p-12 flex flex-col justify-between relative overflow-hidden border-l-[6px] border-l-[#FBF4E6]">
+            <Quote className="w-20 h-20 text-[#FBF4E6]/15 absolute -top-3 -left-3 pointer-events-none" />
             
-            <blockquote className="font-serif text-2xl sm:text-3xl font-medium text-ink leading-relaxed relative z-10 italic mb-8">
+            <blockquote className="font-serif text-2xl sm:text-3xl font-medium text-[#FBF4E6] leading-relaxed relative z-10 italic mb-8">
               &ldquo;{t('man_lead_quote')}&rdquo;
             </blockquote>
 
-            <div className="flex items-center gap-4 pt-6 border-t border-[#E7DEC9]">
-              <div className="relative w-14 h-14 rounded-full overflow-hidden border-2 border-gold shrink-0 shadow-sm">
+            <div className="flex items-center gap-4 pt-6 border-t border-[#FBF4E6]/20">
+              <div className="relative w-14 h-14 rounded-full overflow-hidden border-2 border-[#FBF4E6] shrink-0 shadow-sm">
                 <Image
                   src="/images/48.jpg"
                   alt="Fatehsinh Chauhan"
@@ -37,10 +37,10 @@ export const Philosophy: React.FC = () => {
                 />
               </div>
               <div>
-                <div className="font-serif font-bold text-ink text-lg">
+                <div className="font-serif font-bold text-[#FBF4E6] text-lg">
                   Fatehsinh Mohansinh Chauhan
                 </div>
-                <div className="text-xs text-gold font-semibold tracking-wide uppercase">
+                <div className="text-xs text-[#FBF4E6]/80 font-semibold tracking-wide uppercase">
                   Silvassa · Dadra & Nagar Haveli
                 </div>
               </div>

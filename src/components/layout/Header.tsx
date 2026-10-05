@@ -5,7 +5,6 @@ import { useLanguage } from '@/context/LanguageContext';
 import { navItems } from '@/data/site';
 import { MobileMenu } from './MobileMenu';
 import { Menu, Languages } from 'lucide-react';
-import { motion } from 'framer-motion';
 import { useSmoothScroll } from '@/components/providers/SmoothScrollProvider';
 
 export const Header: React.FC = () => {
@@ -16,16 +15,7 @@ export const Header: React.FC = () => {
   const [activeSection, setActiveSection] = useState<string>('home');
 
   useEffect(() => {
-    const sectionIds = [
-      'home',
-      'lineage',
-      'service',
-      'institutions',
-      'haveli-group',
-      'moments',
-      'philosophy',
-      'contact',
-    ];
+    const sectionIds = navItems.map(item => item.href.replace('#', ''));
 
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 20);
@@ -61,220 +51,156 @@ export const Header: React.FC = () => {
     }
   };
 
-  // Split nav items into left (4) and right (4) groups
   const leftNavItems = navItems.slice(0, 4);
   const rightNavItems = navItems.slice(4);
 
-  return (
-    <>
-      <motion.header
-        initial={{ y: -30, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.6, ease: "easeOut" }}
-        className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${
-          isScrolled
-            ? 'bg-[#FAF5EB]/95 backdrop-blur-md shadow-md shadow-black/5 py-3 border-b border-[#E7DEC9]'
-            : 'bg-[#FAF5EB]/85 backdrop-blur-md shadow-[0_2px_15px_-3px_rgba(0,0,0,0.04)] py-3.5 border-b border-[#E7DEC9]/70'
+  const renderNavItem = (item: any) => {
+    const targetId = item.href.replace('#', '');
+    const isActive = activeSection === targetId;
+
+    return (
+      <a
+        key={item.id || item.href}
+        href={item.href}
+        onClick={(e) => {
+          e.preventDefault();
+          scrollTo(targetId);
+        }}
+        className={`group relative py-1 text-sm xl:text-[15px] capitalize whitespace-nowrap transition-colors duration-200 cursor-pointer select-none focus:outline-none ${
+          isActive
+            ? 'text-[#3B1E40] font-bold'
+            : 'text-[#3B4763] hover:text-[#3B1E40] font-medium'
         }`}
       >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
+        <span className="relative inline-block pb-1">
+          {t(item.labelKey || item.label as any, item.defaultLabel || item.label)}
+          {/* Active Underline */}
+          <span 
+            className={`absolute bottom-0 left-0 right-0 h-[2px] transition-all duration-300 ${
+              isActive 
+                ? 'bg-[#C69749] w-full' 
+                : 'bg-[#C69749]/70 w-0 group-hover:w-full'
+            }`} 
+          />
+        </span>
+      </a>
+    );
+  };
+
+  return (
+    <>
+      <header
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+          isScrolled
+            ? 'bg-[#FAF5EB]/95 backdrop-blur-md shadow-[0_4px_20px_-10px_rgba(0,0,0,0.05)] py-4'
+            : 'bg-transparent py-5'
+        }`}
+      >
+        <div className="max-w-[96rem] mx-auto px-4 sm:px-6 lg:px-8 relative flex items-center justify-between lg:justify-center">
           
-          {/* Desktop Left Nav Items (Home, Lineage, Service, Institutions) */}
-          <nav className="hidden lg:flex items-center space-x-2 xl:space-x-6 flex-1 justify-start">
-            {leftNavItems.map((item, idx) => {
-              const targetId = item.href.replace('#', '');
-              const isActive = activeSection === targetId;
-
-              return (
-                <motion.a
-                  key={item.id}
-                  href={item.href}
-                  onClick={(e) => {
-                    e.preventDefault();
-                    scrollTo(targetId);
-                  }}
-                  initial={{ opacity: 0, y: -8 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.35, delay: 0.05 + idx * 0.04 }}
-                  className={`group relative py-1.5 px-2 xl:px-3 text-xs xl:text-sm tracking-wide transition-colors duration-200 cursor-pointer select-none focus:outline-none ${
-                    isActive
-                      ? 'text-[#0F4A3C] font-semibold'
-                      : 'text-[#2D3748]/85 hover:text-[#0F4A3C] font-medium'
-                  }`}
-                >
-                  <span className="relative inline-block">
-                    {t(item.labelKey as any, item.defaultLabel)}
-                    {/* Active Gold Underline Bar */}
-                    <span 
-                      className={`absolute -bottom-1 left-0 right-0 h-[2.5px] rounded-full transition-all duration-300 ${
-                        isActive 
-                          ? 'bg-[#C69749] w-full shadow-xs' 
-                          : 'bg-[#C69749]/70 w-0 group-hover:w-full'
-                      }`} 
-                    />
-                  </span>
-                </motion.a>
-              );
-            })}
-          </nav>
-
-          {/* Center Brand Identity (FATEHSINH CHAUHAN) */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.96 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.5, delay: 0.1 }}
-            className="shrink-0 px-2 sm:px-4 xl:px-6 text-center"
-          >
+          {/* Mobile Left Brand */}
+          <div className="lg:hidden shrink-0">
             <a
               href="#home"
               onClick={(e) => {
                 e.preventDefault();
                 scrollTo('home');
               }}
-              className="group relative flex flex-col items-center justify-center focus:outline-none cursor-pointer select-none"
+              className="flex flex-col items-center focus:outline-none cursor-pointer select-none"
               aria-label="Fatehsinh Chauhan"
             >
-              <span className="font-serif font-bold text-base sm:text-lg xl:text-xl tracking-[0.14em] text-[#0F4A3C] group-hover:text-[#1B6B54] transition-colors duration-300">
+              <span className="font-serif font-bold text-base tracking-[0.16em] uppercase text-[#3B1E40]">
                 FATEHSINH CHAUHAN
               </span>
-              
-              {/* Delicate Gold Accent Line */}
-              <span className="block h-[2px] w-12 sm:w-16 bg-[#B8860B] rounded-full mx-auto mt-1 opacity-80 group-hover:w-full group-hover:opacity-100 transition-all duration-300" />
+              <div className="w-1/2 h-[2px] bg-[#C69749] mx-auto mt-1" />
             </a>
-          </motion.div>
-
-          {/* Desktop Right Nav Items (Haveli, Moments, Philosophy, Contact) + Language Switcher */}
-          <div className="hidden lg:flex items-center space-x-2 xl:space-x-6 flex-1 justify-end">
-            <nav className="flex items-center space-x-2 xl:space-x-6">
-              {rightNavItems.map((item, idx) => {
-                const targetId = item.href.replace('#', '');
-                const isActive = activeSection === targetId;
-
-                return (
-                  <motion.a
-                    key={item.id}
-                    href={item.href}
-                    onClick={(e) => {
-                      e.preventDefault();
-                      scrollTo(targetId);
-                    }}
-                    initial={{ opacity: 0, y: -8 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.35, delay: 0.1 + idx * 0.04 }}
-                    className={`group relative py-1.5 px-2 xl:px-3 text-xs xl:text-sm tracking-wide transition-colors duration-200 cursor-pointer select-none focus:outline-none ${
-                      isActive
-                        ? 'text-[#0F4A3C] font-semibold'
-                        : 'text-[#2D3748]/85 hover:text-[#0F4A3C] font-medium'
-                    }`}
-                  >
-                    <span className="relative inline-block">
-                      {t(item.labelKey as any, item.defaultLabel)}
-                      {/* Active Gold Underline Bar */}
-                      <span 
-                        className={`absolute -bottom-1 left-0 right-0 h-[2.5px] rounded-full transition-all duration-300 ${
-                          isActive 
-                            ? 'bg-[#C69749] w-full shadow-xs' 
-                            : 'bg-[#C69749]/70 w-0 group-hover:w-full'
-                        }`} 
-                      />
-                    </span>
-                  </motion.a>
-                );
-              })}
-            </nav>
-
-            {/* Language Switcher Capsule */}
-            <div className="pl-1 xl:pl-2">
-              <div className="flex items-center gap-1 bg-white/70 border border-[#D9CDAE] rounded-full px-2.5 py-1 shadow-xs backdrop-blur-sm">
-                <Languages className="w-3.5 h-3.5 text-[#0F4A3C] mr-0.5 shrink-0" />
-                <button
-                  type="button"
-                  onClick={() => setLanguage('en')}
-                  className={`px-2 py-0.5 text-xs rounded transition-all font-semibold ${
-                    language === 'en'
-                      ? 'bg-[#0F4A3C] text-white shadow-xs'
-                      : 'text-[#3B4763] hover:text-[#0F4A3C]'
-                  }`}
-                >
-                  EN
-                </button>
-                <span className="text-[#D9CDAE] text-xs select-none">|</span>
-                <button
-                  type="button"
-                  onClick={() => setLanguage('hi')}
-                  className={`px-1.5 py-0.5 text-xs rounded transition-all font-hindi ${
-                    language === 'hi'
-                      ? 'bg-[#0F4A3C] text-white font-semibold shadow-xs'
-                      : 'text-[#3B4763] hover:text-[#0F4A3C] font-medium'
-                  }`}
-                >
-                  हि
-                </button>
-                <span className="text-[#D9CDAE] text-xs select-none">|</span>
-                <button
-                  type="button"
-                  onClick={() => setLanguage('gu')}
-                  className={`px-1.5 py-0.5 text-xs rounded transition-all font-gujarati ${
-                    language === 'gu'
-                      ? 'bg-[#0F4A3C] text-white font-semibold shadow-xs'
-                      : 'text-[#3B4763] hover:text-[#0F4A3C] font-medium'
-                  }`}
-                >
-                  ગુજ
-                </button>
-              </div>
-            </div>
           </div>
 
-          {/* Mobile Right Controls: Language Switcher & Hamburger Button */}
-          <div className="flex items-center gap-2 sm:gap-3 lg:hidden">
-            {/* Mobile Language Switcher */}
-            <div className="flex items-center gap-0.5 bg-white/80 border border-[#D9CDAE] rounded-full px-2 py-0.5 shadow-xs">
-              <Languages className="w-3 h-3 text-[#0F4A3C] mr-0.5 shrink-0" />
+          {/* Desktop Centered Nav Layout */}
+          <div className="hidden lg:flex items-center justify-center w-full max-w-6xl mx-auto">
+            {/* Left Nav */}
+            <nav className="flex-1 flex justify-end pr-8 xl:pr-12 space-x-6 xl:space-x-8">
+              {leftNavItems.map(renderNavItem)}
+            </nav>
+
+            {/* Center Brand */}
+            <div className="shrink-0 px-4">
+              <a
+                href="#home"
+                onClick={(e) => {
+                  e.preventDefault();
+                  scrollTo('home');
+                }}
+                className="flex flex-col items-center focus:outline-none cursor-pointer select-none"
+                aria-label="Fatehsinh Chauhan"
+              >
+                <span className="font-serif font-bold text-xl tracking-[0.16em] uppercase text-[#3B1E40]">
+                  FATEHSINH CHAUHAN
+                </span>
+                <div className="w-[40%] h-[2px] bg-[#C69749] mx-auto mt-1" />
+              </a>
+            </div>
+
+            {/* Right Nav */}
+            <nav className="flex-1 flex justify-start pl-8 xl:pl-12 space-x-6 xl:space-x-8">
+              {rightNavItems.map(renderNavItem)}
+            </nav>
+          </div>
+
+          {/* Absolute Right Controls (Language + Hamburger) */}
+          <div className="flex items-center gap-2 sm:gap-3 lg:absolute lg:right-8">
+             {/* Pill Language Switcher */}
+             <div className="hidden lg:flex items-center gap-1 border border-[#E7DEC9] rounded-full px-2.5 py-1 bg-white/70 shadow-sm transition-colors">
+              <Languages className="w-3.5 h-3.5 mr-1 text-[#3B1E40]" />
+              
               <button
                 type="button"
                 onClick={() => setLanguage('en')}
-                className={`px-1.5 py-0.5 text-[10px] rounded font-semibold ${
-                  language === 'en' ? 'bg-[#0F4A3C] text-white' : 'text-[#3B4763]'
+                className={`px-1.5 py-0.5 text-[11px] rounded-full font-bold uppercase transition-all ${
+                  language === 'en'
+                    ? 'bg-[#4A0E4E] text-white shadow-sm'
+                    : 'text-[#3B4763] hover:text-[#3B1E40]'
                 }`}
               >
                 EN
               </button>
-              <span className="text-[#D9CDAE] text-[10px] select-none">|</span>
+              <span className="text-[10px] select-none text-[#D9CDAE] mx-0.5">|</span>
               <button
                 type="button"
                 onClick={() => setLanguage('hi')}
-                className={`px-1 py-0.5 text-[10px] rounded font-hindi ${
-                  language === 'hi' ? 'bg-[#0F4A3C] text-white font-semibold' : 'text-[#3B4763]'
+                className={`px-1.5 py-0.5 text-[11px] rounded-full font-bold uppercase transition-all ${
+                  language === 'hi'
+                    ? 'bg-[#4A0E4E] text-white shadow-sm'
+                    : 'text-[#3B4763] hover:text-[#3B1E40]'
                 }`}
               >
                 हि
               </button>
-              <span className="text-[#D9CDAE] text-[10px] select-none">|</span>
+              <span className="text-[10px] select-none text-[#D9CDAE] mx-0.5">|</span>
               <button
                 type="button"
                 onClick={() => setLanguage('gu')}
-                className={`px-1 py-0.5 text-[10px] rounded font-gujarati ${
-                  language === 'gu' ? 'bg-[#0F4A3C] text-white font-semibold' : 'text-[#3B4763]'
+                className={`px-1.5 py-0.5 text-[11px] rounded-full font-bold uppercase transition-all ${
+                  language === 'gu'
+                    ? 'bg-[#4A0E4E] text-white shadow-sm'
+                    : 'text-[#3B4763] hover:text-[#3B1E40]'
                 }`}
               >
                 ગુજ
               </button>
             </div>
 
-            {/* Mobile Hamburger Toggle */}
-            <motion.button
-              whileTap={{ scale: 0.92 }}
+            {/* Mobile Hamburger */}
+            <button
               onClick={() => setMobileMenuOpen(true)}
-              className="p-1.5 text-[#0F4A3C] hover:text-[#1B6B54] focus:outline-none transition-colors"
+              className="p-1.5 lg:hidden focus:outline-none text-[#3B1E40] hover:text-[#5E1463] transition-colors"
               aria-label="Toggle navigation menu"
             >
               <Menu className="w-6 h-6" />
-            </motion.button>
+            </button>
           </div>
-
         </div>
-      </motion.header>
+      </header>
 
       {/* Mobile Navigation Drawer */}
       <MobileMenu

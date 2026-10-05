@@ -128,7 +128,7 @@ export const ImpactStats: React.FC = () => {
               transition={{ duration: 0.5, delay: idx * 0.08 }}
               className="text-center px-4 group cursor-default"
             >
-              <div className="font-serif text-4xl sm:text-5xl lg:text-6xl font-semibold text-[#0F4A3C] mb-2 tracking-tight min-h-[3.5rem] flex items-center justify-center group-hover:scale-105 transition-all duration-300">
+              <div className="font-serif text-4xl sm:text-5xl lg:text-6xl font-semibold text-[#4A0E4E] mb-2 tracking-tight min-h-[3.5rem] flex items-center justify-center group-hover:scale-105 transition-all duration-300">
                 <AnimatedCounter
                   target={stat.target}
                   start={stat.start}
