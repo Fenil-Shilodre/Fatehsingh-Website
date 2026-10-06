@@ -92,7 +92,7 @@ export const Hero: React.FC = () => {
               href="#service"
               whileHover={{ scale: 1.03, y: -2 }}
               whileTap={{ scale: 0.97 }}
-              className="inline-flex items-center justify-center px-5 sm:px-6 py-2.5 rounded-lg bg-[#164B3D] hover:bg-[#1E5D4C] text-[#FAF5EB] border border-[#2D7360]/70 font-medium text-xs sm:text-sm shadow-xl shadow-black/50 transition-all gap-1.5 group"
+              className="inline-flex items-center justify-center px-5 sm:px-6 py-2.5 rounded-lg bg-gradient-to-b from-[#5E1463] to-[#4A0E4E] hover:brightness-110 text-[#FBF4E6] border border-[#4A0E4E]/90 font-medium text-xs sm:text-sm shadow-xl shadow-black/50 transition-all gap-1.5 group"
             >
               <span>Explore Public Record</span>
               <ChevronDown className="w-4 h-4 text-[#FAF5EB] group-hover:translate-y-0.5 transition-transform" />
